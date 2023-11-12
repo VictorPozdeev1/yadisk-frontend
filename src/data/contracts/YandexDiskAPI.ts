@@ -10,5 +10,6 @@ interface YandexDiskAPI {
     // Перемещение документа из одной категории в другую.
     moveDocument(documentId: string, newCategoryId: string): Promise<void>;
     // Удаление документа.
+
     deleteDocument(documentId: string): Promise<void>;
 }
