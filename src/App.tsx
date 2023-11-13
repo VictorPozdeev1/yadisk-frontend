@@ -11,7 +11,7 @@ function App() {
   //Получение документов
   useEffect(()=>{
     apiStoreDocuments.loadDocuments(apiStoreCategories.categories)
-  }, apiStoreDocuments.categories)
+  }, apiStoreCategories.categories)
 
   return (
     <div className="App">
