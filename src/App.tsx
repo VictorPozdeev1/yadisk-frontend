@@ -1,10 +1,11 @@
 import React from "react";
 import "./App.css";
+import DocumentManagement from "./components/DocumentManagement/DocumentManagement";
 
 function App() {
   return (
     <div className="App">
-      <h1>Hello Team3!</h1>
+      <DocumentManagement></DocumentManagement>
     </div>
   );
 }

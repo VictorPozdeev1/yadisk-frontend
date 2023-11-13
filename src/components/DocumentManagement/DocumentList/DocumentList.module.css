@@ -1,0 +1,13 @@
+.documentListContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.listItemHeader {
+    display: flex;
+    align-items: center;
+}
+
+
+

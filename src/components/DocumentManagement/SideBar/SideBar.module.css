@@ -1,0 +1,41 @@
+.sidebarContainer {
+    background-color: #EDEDED;
+    height: 100%;
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 16px;
+    font-family: 'Manrope';
+}
+
+.logo {
+    width: 70%;
+}
+
+
+.customList {
+    width: 90%;
+}
+
+
+.categoryItem {
+    font-weight: 700;
+    width: 100%;
+    height: 50px;
+    font-size: 1.2em;
+    padding-left: 24px;
+}
+
+
+.categoryItem.selected {
+    color: #035FA2;
+    background-color: white;
+    border-radius: 7px;
+}
+
+.categoryItem:hover {
+    color: #035FA2;
+    border-radius: 7px;
+    background-color: white;
+}
