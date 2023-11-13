@@ -37,7 +37,7 @@ export const getDocuments = async (categories: string) => {
                 fields: '_embedded.items.name, _embedded.items.resource_id, _embedded.items.file',
             },
             headers: {
-                // Authorization: 'здесь должен быть токен'
+                Authorization: token
             }
         })
 
