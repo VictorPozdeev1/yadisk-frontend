@@ -17,7 +17,7 @@ export const getCategories = async () => {
                 fields: '_embedded.items.name, _embedded.items.resource_id'
             },
             headers: {
-                Authorization: 'y0_AgAAAABx72gLAADLWwAAAADxNjwrcCUbblaLR7-wFvKuoqqfkC0tkGQ'
+               // Authorization: 'здесь должен быть токен'
             }
         })
 
@@ -35,7 +35,7 @@ export const getDocuments = async (categories: string) => {
                 fields: '_embedded.items.name, _embedded.items.resource_id, _embedded.items.file',
             },
             headers: {
-                Authorization: 'y0_AgAAAABx72gLAADLWwAAAADxNjwrcCUbblaLR7-wFvKuoqqfkC0tkGQ'
+                // Authorization: 'здесь должен быть токен'
             }
         })
 
