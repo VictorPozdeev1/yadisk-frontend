@@ -2,18 +2,16 @@ import React, {useEffect} from "react";
 import "./App.css";
 import { apiStoreCategories } from "./store";
 import { apiStoreDocuments } from "./store";
-
+import {observer} from 'mobx-react'
 function App() {
-
+  //Получение категорий
   useEffect(()=>{
-    apiStoreCategories.loadCategories()
+    apiStoreCategories.loadCategories();
   },[]);
-  
+  //Получение документов
   useEffect(()=>{
-    apiStoreDocuments.loadDocuments(apiStoreCategories.categories);
-  }, apiStoreCategories.categories);
-
-  console.log(apiStoreDocuments.documents)
+    apiStoreDocuments.loadDocuments(apiStoreCategories.categories)
+  }, apiStoreDocuments.categories)
 
   return (
     <div className="App">
@@ -22,4 +20,4 @@ function App() {
   );
 }
 
-export default App;
+export default observer(App);
