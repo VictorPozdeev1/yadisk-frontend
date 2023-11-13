@@ -1,7 +1,9 @@
 import axios from "axios";
 
-import { Documents } from "../contracts/document";
-import { Category } from "../contracts/category";
+import Document from "../contracts/Document";
+import Category from "../contracts/Category";
+
+import token from "./token";
 
 export const CATEGORIES_URL = 'CaseLabDocuments',
     BASE_URL = 'https://cloud-api.yandex.net/v1/disk/resources';
@@ -17,7 +19,7 @@ export const getCategories = async () => {
                 fields: '_embedded.items.name, _embedded.items.resource_id'
             },
             headers: {
-               // Authorization: 'здесь должен быть токен'
+                Authorization: token,
             }
         })
 
@@ -29,7 +31,7 @@ export const getCategories = async () => {
 
 export const getDocuments = async (categories: string) => {
     try {
-        const response = await axios.get<{ _embedded: { items: Documents[] } }>(BASE_URL, {
+        const response = await axios.get<{ _embedded: { items: Document[] } }>(BASE_URL, {
             params: {
                 path: `${CATEGORIES_URL}/${categories}`,
                 fields: '_embedded.items.name, _embedded.items.resource_id, _embedded.items.file',

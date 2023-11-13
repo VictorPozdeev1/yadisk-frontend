@@ -1,4 +1,4 @@
-export interface Documents {
+export default interface Document {
     resource_id: string; // Уникальный идентификатор документа
     name: string; // Имя документа
     categoryId: string; // Идентификатор категории, к которой документ принадлежит
