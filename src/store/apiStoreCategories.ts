@@ -1,30 +1,30 @@
-import { runInAction,action, makeObservable,observable } from "mobx";
+import { runInAction, action, makeObservable, observable } from "mobx";
 import { getCategories } from "../data/api/request";
-import { Category } from "../data/contracts/category";
+import Category from "../data/contracts/Category";
 
-class ApiStoreCategories{
-    categories: Array<Category>= [];
-    
-    async loadCategories(){
-        const categories  = await getCategories() as Category[];
-        runInAction(()=>{
+class ApiStoreCategories {
+    categories: Array<Category> = [];
+
+    async loadCategories() {
+        const categories = await getCategories() as Category[];
+        runInAction(() => {
             this.categories = categories;
         })
-        
-        
+
+
     }
 
-    
 
-    constructor(){
-        
-        makeObservable(this,{
+
+    constructor() {
+
+        makeObservable(this, {
             categories: observable,
-            loadCategories:action
+            loadCategories: action
         });
     }
 
-    
+
 }
 
 export default ApiStoreCategories
