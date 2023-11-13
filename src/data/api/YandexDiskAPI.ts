@@ -1,4 +1,8 @@
-interface YandexDiskAPI {
+import Category from "../contracts/Category";
+import Document from "../contracts/Document";
+
+
+export interface YandexDiskAPI {
     // Получение списка всех документов.
     getDocuments(): Promise<Document[]>;
     // Получение списка всех категорий.
