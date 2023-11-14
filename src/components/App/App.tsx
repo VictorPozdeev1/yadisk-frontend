@@ -38,6 +38,9 @@ function App() {
   };
 
   const onGetFullImg = (id: string) => {
+    if (!images) {
+      getAllImg();
+    }
     return images.filter((el: { id: string }) => el.id === id)[0].url;
   };
 

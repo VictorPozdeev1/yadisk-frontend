@@ -6,7 +6,6 @@ const ItemFull: FC<any> = ({ onGetFullImg }) => {
   console.log(id);
   const url = onGetFullImg(id);
   return <div>{<img src={url} alt="12" />}</div>;
-  // return <div>{url}</div>;
 };
 
 export default ItemFull;
