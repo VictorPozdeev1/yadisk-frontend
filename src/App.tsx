@@ -1,7 +1,18 @@
-import React from "react";
+import React, {useEffect} from "react";
 import "./App.css";
-
+import { apiStoreCategories } from "./store";
+import { apiStoreDocuments } from "./store";
+import {observer} from 'mobx-react'
 function App() {
+  //Получение категорий
+  useEffect(()=>{
+    apiStoreCategories.loadCategories();
+  },[]);
+  //Получение документов
+  useEffect(()=>{
+    apiStoreDocuments.loadDocuments(apiStoreCategories.categories)
+  }, apiStoreCategories.categories)
+
   return (
     <div className="App">
       <h1>Hello Team3!</h1>
@@ -9,4 +20,4 @@ function App() {
   );
 }
 
-export default App;
+export default observer(App);
