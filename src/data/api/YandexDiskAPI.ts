@@ -1,3 +1,5 @@
+export {};
+
 interface YandexDiskAPI {
     // Получение списка всех документов.
     getDocuments(): Promise<Document[]>;

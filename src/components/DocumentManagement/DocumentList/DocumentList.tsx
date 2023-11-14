@@ -43,7 +43,7 @@ function DocumentList({ documents, currentCategory }: DocumentListProps) {
                             <TableRow key={document.id}>
                                 <TableCell style={{ fontSize: '20px', textAlign: 'center' }}>
                                     <Box display="flex" alignItems="center" justifyContent="center">
-                                        <FolderIcon fontSize="small" style={{ marginRight: '10px'}}/>
+                                        <FolderIcon fontSize="small" style={{ marginRight: '10px' }}/>
                                         <div style={{ textAlign: 'center' }}>{document.title}</div>
                                     </Box>
                                 </TableCell>
