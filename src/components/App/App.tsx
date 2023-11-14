@@ -2,16 +2,31 @@ import React, { useEffect, useState } from "react";
 import styles from "./App.module.css";
 import Header from "../Ui/Header/Header";
 import Footer from "../Ui/Footer/Footer";
-import Sidebar from "../Sidebar/Sidebar";
 import Layout from "../Ui/Layout/Layout";
+import Sidebar from "../Ui/Sidebar/Sidebar";
 import AppRouter from "../AppRouter";
-import ItemsList from "../ItemsList/ItemsList";
-import Component404 from "../Component404/Component404";
-import YaService from "../services/YaService";
+import YaService from "../../services/YaService";
 import Item from "../Item/Item";
-import ItemFull from "../ItemFull/ItemFull";
+import { observer } from "mobx-react";
+import { apiStoreCategories, apiStoreDocuments } from "../../store";
+import ItemFull from "../pages/ItemFull/ItemFull";
+import Component404 from "../pages/Component404/Component404";
+import ItemsList from "../pages/ItemsList/ItemsList";
+
+import { getCategories, getDocuments } from "../../data/api/request";
+
+// getCategories().then((data) => console.log(data));
 
 function App() {
+  //Получение категорий
+  useEffect(() => {
+    apiStoreCategories.loadCategories();
+  }, []);
+  //Получение документов
+  useEffect(() => {
+    apiStoreDocuments.loadDocuments(apiStoreCategories.categories);
+  }, apiStoreCategories.categories);
+
   const { getAllCategoriesName, getAllItems } = YaService();
   const [images, setImage] = useState<any[]>([]);
 
@@ -21,26 +36,13 @@ function App() {
 
   const getAllImg = () => {
     getAllItems().then((data) => {
-      data.items.forEach((item: any) => {
-        console.log(item);
-        setImage((images) => [
-          ...images,
-          {
-            src: item.preview,
-            pathForDownload: item.file,
-            name: item.name,
-            id: item.resource_id,
-            url: item.sizes[0].url,
-          },
-        ]);
+      data.forEach((item: any) => {
+        setImage((images) => [...images, item]);
       });
     });
   };
 
   const onGetFullImg = (id: string) => {
-    if (!images) {
-      getAllImg();
-    }
     return images.filter((el: { id: string }) => el.id === id)[0].url;
   };
 
@@ -78,4 +80,5 @@ function App() {
   );
 }
 
-export default App;
+export default observer(App);
+// export default App;

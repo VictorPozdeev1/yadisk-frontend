@@ -6,7 +6,7 @@ const Layout: FC<any> = ({ header, footer, sidebar }) => {
   return (
     <>
       {header}
-      <main className={styles["main-wrapper"]}>
+      <main className={styles["wrapper"]}>
         {sidebar}
         <Outlet />
       </main>
