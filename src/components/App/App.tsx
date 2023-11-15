@@ -5,7 +5,7 @@ import Footer from "../Ui/Footer/Footer";
 import Layout from "../Ui/Layout/Layout";
 import Sidebar from "../Ui/Sidebar/Sidebar";
 import AppRouter from "../AppRouter";
-import YaService from "../../data/api/YaService";
+//import YaService from "../../data/api/YaService";
 import Item from "../Item/Item";
 import { observer } from "mobx-react";
 import { apiStoreCategories, apiStoreDocuments } from "../../store";

@@ -3,7 +3,7 @@ import axios from "axios";
 import Document from "../contracts/Document";
 import Category from "../contracts/Category";
 
-import { token } from "./token";
+import token from "./token";
 
 export const CATEGORIES_URL = "CaseLabDocuments",
   BASE_URL = "https://cloud-api.yandex.net/v1/disk/resources";
