@@ -1,34 +1,36 @@
-import { useHttp } from "./useHttp";
+export default null;
 
-const _transformItems = (item: any) => {
-  return {
-    src: item.preview,
-    pathForDownload: item.file,
-    name: item.name,
-    id: item.resource_id,
-    url: item.sizes[0].url,
-  };
-};
+// import { useHttp } from "./useHttp";
 
-const YaService = () => {
-  const request = useHttp();
+// const _transformItems = (item: any) => {
+//   return {
+//     src: item.preview,
+//     pathForDownload: item.file,
+//     name: item.name,
+//     id: item.resource_id,
+//     url: item.sizes[0].url,
+//   };
+// };
 
-  const _apiBase = "https://cloud-api.yandex.net/v1/disk/resources";
+// const YaService = () => {
+//   const request = useHttp();
 
-  const getAllCategoriesName = async () => {
-    const res = await request(`${_apiBase}?path=CaseLabDocuments`);
-    return await res._embedded.items.map((el: any) => el.name);
-  };
+//   const _apiBase = "https://cloud-api.yandex.net/v1/disk/resources";
 
-  const getAllItems = async () => {
-    const res = await request(`${_apiBase}/files?fields=CaseLabDocuments`);
-    return await res.items.map(_transformItems);
-  };
+//   const getAllCategoriesName = async () => {
+//     const res = await request(`${_apiBase}?path=CaseLabDocuments`);
+//     return await res._embedded.items.map((el: any) => el.name);
+//   };
 
-  return {
-    getAllCategoriesName,
-    getAllItems,
-  };
-};
+//   const getAllItems = async () => {
+//     const res = await request(`${_apiBase}/files?fields=CaseLabDocuments`);
+//     return await res.items.map(_transformItems);
+//   };
 
-export default YaService;
+//   return {
+//     getAllCategoriesName,
+//     getAllItems,
+//   };
+// };
+
+// export default YaService;

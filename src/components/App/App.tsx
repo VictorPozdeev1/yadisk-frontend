@@ -5,63 +5,53 @@ import Footer from "../Ui/Footer/Footer";
 import Layout from "../Ui/Layout/Layout";
 import Sidebar from "../Ui/Sidebar/Sidebar";
 import AppRouter from "../AppRouter";
-import YaService from "../../data/api/YaService";
+//import YaService from "../../data/api/YaService";
 import Item from "../Item/Item";
 import { observer } from "mobx-react";
 import { apiStoreCategories, apiStoreDocuments } from "../../store";
 import ItemFull from "../pages/ItemFull/ItemFull";
 import Component404 from "../pages/Component404/Component404";
 import ItemsList from "../pages/ItemsList/ItemsList";
+import { toJS } from "mobx";
 
-import { getCategories, getDocuments } from "../../data/api/request";
-
-// getCategories().then((data) => console.log(data));
+import {
+  getCategories,
+  getDocumentsByCategory,
+  getDocuments,
+} from "../../data/api/request";
 
 function App() {
-  //Получение категорий
+  // Получение категорий
   useEffect(() => {
-    apiStoreCategories.loadCategories();
+    apiStoreCategories.loadCategories().then(() => {
+      apiStoreDocuments.loadDocuments();
+    });
   }, []);
-  //Получение документов
-  useEffect(() => {
-    apiStoreDocuments.loadDocuments(apiStoreCategories.categories);
-  }, apiStoreCategories.categories);
-
-  const { getAllCategoriesName, getAllItems } = YaService();
-  const [images, setImage] = useState<any[]>([]);
 
   const onSwitchFullItem = (url: string, name: string) => {
     return <Item url={url} name={name} />;
   };
 
-  const getAllImg = () => {
-    getAllItems().then((data) => {
-      data.forEach((item: any) => {
-        setImage((images) => [...images, item]);
-      });
-    });
-  };
-
   const onGetFullImg = (id: string) => {
-    return images.filter((el: { id: string }) => el.id === id)[0].url;
+    console.log(id);
+    console.log(toJS(apiStoreDocuments.documents));
+    return toJS(apiStoreDocuments.documents).filter(
+      (el) => el.resource_id === id
+    )[0].sizes[0].url;
   };
 
-  useEffect(() => {
-    getAllImg();
-  }, []);
-
-  const ItemsListContent = !images.length ? (
+  const documents = toJS(apiStoreDocuments.documents);
+  const ItemsListContent = !documents ? (
     <div>Nothing</div>
   ) : (
-    images.map((el) => {
-      console.log(el);
+    documents.map((el) => {
       return (
         <Item
-          src={el.src}
+          src={el.preview}
           name={el.name}
-          key={el.id}
-          id={el.id}
-          url={el.url}
+          key={el.resource_id}
+          id={el.resource_id}
+          url={el.file}
           onClick={onSwitchFullItem}
         />
       );
@@ -71,7 +61,11 @@ function App() {
   return (
     <AppRouter
       Layout={
-        <Layout header={<Header />} footer={<Footer />} sidebar={<Sidebar />} />
+        <Layout
+          header={<Header />}
+          footer={<Footer />}
+          sidebar={<Sidebar categories={toJS(apiStoreCategories.categories)} />}
+        />
       }
       ItemsList={<ItemsList items={ItemsListContent} />}
       Component404={<Component404 />}
