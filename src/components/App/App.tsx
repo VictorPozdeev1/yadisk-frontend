@@ -14,6 +14,8 @@ import Component404 from "../pages/Component404/Component404";
 import ItemsList from "../pages/ItemsList/ItemsList";
 
 import { getCategories, getDocuments } from "../../data/api/request";
+import { Outlet } from "react-router";
+import { Main } from "../Ui/Main/Main";
 
 // getCategories().then((data) => console.log(data));
 
@@ -71,7 +73,11 @@ function App() {
   return (
     <AppRouter
       Layout={
-        <Layout header={<Header />} footer={<Footer />} sidebar={<Sidebar />} />
+        <Layout>
+          {/* <Header /> */}
+          <Main></Main>
+          {/* <Footer /> */}
+        </Layout>
       }
       ItemsList={<ItemsList items={ItemsListContent} />}
       Component404={<Component404 />}
