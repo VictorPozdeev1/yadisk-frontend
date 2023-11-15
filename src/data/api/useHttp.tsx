@@ -1,4 +1,4 @@
-import token from "./token";
+import { token } from "./token";
 
 export const useHttp = () => {
   const request = async (
