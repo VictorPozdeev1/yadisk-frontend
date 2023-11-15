@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import styles from "./App.module.css";
 import Header from "../Ui/Header/Header";
 import Footer from "../Ui/Footer/Footer";
@@ -69,10 +69,9 @@ function App() {
       }
       ItemsList={<ItemsList items={ItemsListContent} />}
       Component404={<Component404 />}
-      ItemFull={<ItemFull onGetFullImg={onGetFullImg} />}
+      ItemFull={<ItemFull />}
     />
   );
 }
 
 export default observer(App);
-// export default App;
