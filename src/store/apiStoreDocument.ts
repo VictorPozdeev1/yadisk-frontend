@@ -5,41 +5,33 @@ import { apiStoreCategories } from ".";
 import Category from "../data/contracts/Category";
 
 class ApiStoreDocument {
+  documents: Array<Document> = [];
+  categories: Array<Category> = [];
 
-    documents: Array<Document> = [];
-    categories: Array<Category> = [];
+  loadDocuments(category: Array<Category>) {
+    category.forEach(async (item: Category) => {
+      let file: Array<Document> = [];
 
-    loadDocuments(category: Array<Category>) {
+      file = (await getDocuments(item.name)) as Document[];
+      file.forEach((i: Document) => {
+        runInAction(() => {
+          i["categoryId"] = item.resource_id;
+          this.documents.push(i);
+        });
+      });
+    });
+  }
 
-        category.forEach(async (item: Category) => {
-            let file: Array<Document> = [];
+  constructor() {
+    reaction(
+      () => ({ categories: apiStoreCategories.categories }),
+      ({ categories }) => {
+        this.categories = categories;
+      }
+    );
 
-            file = await getDocuments(item.name) as Document[];
-            file.forEach((i: Document) => {
-                runInAction(() => {
-                    i["categoryId"] = item.resource_id;
-                    this.documents.push(i);
-                })
-
-            })
-
-        })
-
-    }
-
-    constructor() {
-
-        reaction(
-            () => ({ categories: apiStoreCategories.categories }),
-            ({ categories }) => {
-                this.categories = categories;
-            }
-        )
-
-        makeAutoObservable(this);
-
-    }
-
+    makeAutoObservable(this);
+  }
 }
 
 export default ApiStoreDocument;
