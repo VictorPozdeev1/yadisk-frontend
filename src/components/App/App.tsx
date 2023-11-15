@@ -30,15 +30,30 @@ function App() {
   const { getAllCategoriesName, getAllItems } = YaService();
   const [images, setImage] = useState<any[]>([]);
 
-  const onSwitchFullItem = (url: string, name: string) => {
-    return <Item url={url} name={name} />;
+  const onSwitchFullItem = (url: string, name: string, category: string) => {
+    return <Item url={url} name={name} category={category} />;  
   };
 
+  //переработал фунцию (донастройка роутинга)
   const getAllImg = () => {
-    getAllItems().then((data) => {
-      data.forEach((item: any) => {
-        setImage((images) => [...images, item]);
-      });
+    getAllCategoriesName().then((categories) => {
+        categories.forEach((category: any) => {
+            getAllItems(category).then((items) => {
+                items.forEach((item: any) => {
+                    setImage((images) => [
+                        ...images,
+                        {
+                            src: item.preview,
+                            pathForDownload: item.file,
+                            name: item.name,
+                            id: item.resource_id,
+                            url: item.sizes[0].url,
+                            category: category
+                        },
+                    ]);
+                });
+            });
+        });
     });
   };
 
@@ -62,6 +77,7 @@ function App() {
           key={el.id}
           id={el.id}
           url={el.url}
+          category={el.category}
           onClick={onSwitchFullItem}
         />
       );
@@ -80,5 +96,5 @@ function App() {
   );
 }
 
-export default observer(App);
-// export default App;
+//export default observer(App);
+export default App;

@@ -1,12 +1,12 @@
 import React, { FC } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+
+import "./ItemFull.module.css"
 
 const ItemFull: FC<any> = ({ onGetFullImg }) => {
-  const { id } = useParams();
-  console.log(id);
+  const { id, category } = useParams();
   const url = onGetFullImg(id);
-
-  return <div>{<img src={url} alt="12" />}</div>;
+  return <div>{<img src={url} alt="image" />}</div>;
 };
 
 export default ItemFull;

@@ -1,15 +1,5 @@
 import { useHttp } from "./useHttp";
 
-const _transformItems = (item: any) => {
-  return {
-    src: item.preview,
-    pathForDownload: item.file,
-    name: item.name,
-    id: item.resource_id,
-    url: item.sizes[0].url,
-  };
-};
-
 const YaService = () => {
   const request = useHttp();
 
@@ -20,10 +10,17 @@ const YaService = () => {
     return await res._embedded.items.map((el: any) => el.name);
   };
 
-  const getAllItems = async () => {
-    const res = await request(`${_apiBase}/files?fields=CaseLabDocuments`);
-    return await res.items.map(_transformItems);
-  };
+  const getAllItems = async (category: string | undefined) => {
+    const res = await request(`${_apiBase}?path=CaseLabDocuments/${category}`);
+    return await res._embedded.items.map((item: any) => {
+        const pathParts = item.path.split('/');
+        const category = pathParts[pathParts.length - 2];
+        return {
+            ...item,
+            category: category
+        };
+    });
+};
 
   return {
     getAllCategoriesName,
