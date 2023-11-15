@@ -1,4 +1,6 @@
 import { createTheme } from '@mui/material/styles';
+import { Theme } from '@mui/system';
+
 // переопределяем инерфейс брейкпоинтов
 declare module '@mui/material/styles' {
   interface BreakpointOverrides {
@@ -14,9 +16,9 @@ declare module '@mui/material/styles' {
   }
 }
 
-export const appTheme = createTheme({
+export const appTheme:Theme = createTheme({
   typography: {
-    fontFamily: 'Manrope, Roboto, Arial',
+    fontFamily: ' Manrope, Roboto, Arial',
   },
   breakpoints:{
     values:{
