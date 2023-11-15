@@ -20,15 +20,6 @@ import {
   getDocuments,
 } from "../../data/api/request";
 
-// getDocumentsByCategory("Бухгалтерия").then((data) => console.log(data));
-
-// getDocuments().then((data) => {
-//   if (data) {
-//     console.log(data[0]);
-//   }
-// });
-// console.log(toJS(apiStoreDocuments.documents));
-
 function App() {
   // Получение категорий
   useEffect(() => {
