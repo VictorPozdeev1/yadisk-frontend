@@ -1,5 +1,4 @@
-import React, { FC } from 'react';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { createTheme } from '@mui/material/styles';
 // переопределяем инерфейс брейкпоинтов
 declare module '@mui/material/styles' {
   interface BreakpointOverrides {
@@ -42,14 +41,3 @@ export const appTheme = createTheme({
   }
 
 });
-
-
-// function Theme<ThemeProviderProps>({ theme, children }) {
-//   return (
-//     <ThemeProvider theme={theme ?? appTheme}>
-//       {children}
-//     </ThemeProvider>
-//   )
-// }
-
-// export Theme;

@@ -1,7 +1,7 @@
 import React, { FC, PropsWithChildren } from 'react';
 import Sidebar from '../Sidebar/Sidebar';
 import { Outlet } from 'react-router';
-import { Container, Theme } from '@mui/system';
+import { Theme } from '@mui/system';
 import Grid from '@mui/material/Grid';
 import { useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';

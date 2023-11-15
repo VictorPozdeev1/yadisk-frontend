@@ -4,7 +4,7 @@ import styles from "./Layout.module.css";
 import { ThemeProvider } from '@mui/material/styles';
 import { appTheme } from "../../theme/theme";
 import { Container, CssBaseline } from "@mui/material";
-import { Theme } from "pretty-format";
+import { Theme } from '@mui/system';
 export interface LayoutProps {
   header?: JSX.Element;
   main?: JSX.Element;
