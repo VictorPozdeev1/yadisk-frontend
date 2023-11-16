@@ -15,11 +15,17 @@ import ItemsList from "../pages/ItemsList/ItemsList";
 import Category from "../pages/Category/Category";
 import { toJS } from "mobx";
 
+
 import {
   getCategories,
   getDocumentsByCategory,
   getDocuments,
 } from "../../data/api/request";
+import { Outlet } from "react-router";
+import { Main } from "../Ui/Main/Main";
+import { appTheme } from "../theme/theme";
+
+
 
 
 function App() {
@@ -65,6 +71,8 @@ function App() {
       Layout={
         <Layout
           header={<Header />}
+          main={<Main />}
+          theme={appTheme}
           footer={<Footer />}
           sidebar={<Sidebar categories={toJS(apiStoreCategories.categories)} />}
         />
