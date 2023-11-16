@@ -2,6 +2,7 @@ import React, { FC, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Sidebar.module.css";
 
+
 const Sidebar: FC<any> = ({ categories }) => {
   console.log(categories);
   const content = categories
@@ -13,7 +14,7 @@ const Sidebar: FC<any> = ({ categories }) => {
       ))
     : null;
 
-  return <div className={styles["wrapper"]}>{content}</div>;
+  return <div className={styles["wrapper"]} data-testid="sidebar_test">{content}</div>;
 };
 
 export default Sidebar;
