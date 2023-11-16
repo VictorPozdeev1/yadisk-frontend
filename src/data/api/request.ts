@@ -5,6 +5,12 @@ import Category from "../contracts/Category";
 
 import token from "./token";
 
+function getCategoryFromPath(path: string): string {
+  const parts = path.split("/");
+  const category = parts[parts.length - 2];
+  return category;
+}
+
 export const CATEGORIES_URL = "CaseLabDocuments",
   BASE_URL = "https://cloud-api.yandex.net/v1/disk/resources";
 
@@ -58,7 +64,7 @@ export const getDocuments = async () => {
       {
         params: {
           fields:
-            "items.name, items.resource_id, items.file, items.preview, items.sizes",
+            "items.name, items.resource_id, items.file, items.preview, items.sizes, items.path",
         },
         headers: {
           Authorization: token,
@@ -66,7 +72,10 @@ export const getDocuments = async () => {
       }
     );
 
-    return response.data.items;
+    return response.data.items.map((el) => ({
+      ...el,
+      category: getCategoryFromPath(el.path),
+    }));
   } catch (err) {
     console.log(err);
   }

@@ -15,7 +15,6 @@ import ItemsList from "../pages/ItemsList/ItemsList";
 import Category from "../pages/Category/Category";
 import { toJS } from "mobx";
 
-
 import {
   getCategories,
   getDocumentsByCategory,
@@ -25,9 +24,6 @@ import { Outlet } from "react-router";
 import { Main } from "../Ui/Main/Main";
 import { appTheme } from "../theme/theme";
 
-
-
-
 function App() {
   // Получение категорий
   useEffect(() => {
@@ -36,23 +32,26 @@ function App() {
     });
   }, []);
 
-  const onSwitchFullItem = (url: string, name: string) => {
-    return <Item url={url} name={name} />;
-  };
+  // useless
+  // const onSwitchFullItem = (url: string, name: string) => {
+  //   return <Item url={url} name={name} />;
+  // };
 
-  const onGetFullImg = (id: string) => {
-    console.log(id);
-    console.log(toJS(apiStoreDocuments.documents));
-    return toJS(apiStoreDocuments.documents).filter(
-      (el) => el.resource_id === id
-    )[0].sizes[0].url;
-  };
+  // useless
+  // const onGetFullImg = (id: string) => {
+  //   console.log(id);
+  //   console.log(toJS(apiStoreDocuments.documents));
+  //   return toJS(apiStoreDocuments.documents).filter(
+  //     (el) => el.resource_id === id
+  //   )[0].sizes[0].url;
+  // };
 
   const documents = toJS(apiStoreDocuments.documents);
   const ItemsListContent = !documents ? (
     <div>Nothing</div>
   ) : (
     documents.map((el) => {
+      console.log(el);
       return (
         <Item
           src={el.preview}
@@ -60,7 +59,8 @@ function App() {
           key={el.resource_id}
           id={el.resource_id}
           url={el.file}
-          onClick={onSwitchFullItem}
+          category={el.category}
+          // onClick={onSwitchFullItem}
         />
       );
     })
