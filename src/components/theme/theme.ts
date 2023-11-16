@@ -1,4 +1,4 @@
-import { createTheme } from '@mui/material/styles';
+import { createTheme, responsiveFontSizes } from '@mui/material/styles';
 import { Theme } from '@mui/system';
 
 // переопределяем инерфейс брейкпоинтов
@@ -15,10 +15,12 @@ declare module '@mui/material/styles' {
     desktop: true;
   }
 }
-
-export const appTheme:Theme = createTheme({
+export const appTheme:Theme = responsiveFontSizes(createTheme({
   typography: {
-    fontFamily: ' Manrope, Roboto, Arial',
+    fontFamily: 'Manrope, Roboto, Arial',
+    h6:{
+      fontWeight:'bold',
+    }
   },
   breakpoints:{
     values:{
@@ -40,6 +42,8 @@ export const appTheme:Theme = createTheme({
       main: '#EDEDED',
       contrastText: '#414042',
     }
-  }
+  },
 
+}),{
+  breakpoints:['tablet'],
 });
