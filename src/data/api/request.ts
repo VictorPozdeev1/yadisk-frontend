@@ -37,7 +37,7 @@ export const getDocumentsByCategory = async (categories: string) => {
         params: {
           path: `${CATEGORIES_URL}/${categories}`,
           fields:
-            "_embedded.items.name, _embedded.items.resource_id, _embedded.items.file, _embedded.items.preview, _embedded.items.sizes",
+            "_embedded.items.name, _embedded.items.resource_id, _embedded.items.file, _embedded.items.preview, _embedded.items.sizes _embedded.path",
         },
         headers: {
           Authorization: token,
@@ -71,3 +71,63 @@ export const getDocuments = async () => {
     console.log(err);
   }
 };
+
+export const deleteDocument = async (path:string) => {
+  try{
+    const response = await axios.delete(
+      `${BASE_URL}`,
+      {
+        params:{
+          path: path, // путь к документу пример: CaseLabDocuments/Бухгалтерия/Зима.jpg
+        },
+        headers:{
+          Authorization: token,
+        }
+      }
+    )
+    return response
+  } catch(err){
+    console.log(err)
+  }
+};
+
+export const switchCategory = async (from:string, path:string) =>{
+  try{
+    const response = await axios.post(
+      `${BASE_URL}/move`,
+      {
+        params:{
+          from:from, // откуда пример: CaseLabDocuments/Бухгалтерия/Зима.jpg
+          path:path // куда пример: CaseLabDocuments/Университет/Зима.jpg
+        },
+        headers:{
+          Authorization: token,
+        }
+      }
+    )
+    return response
+  } catch(err){
+    console.log(err)
+  }
+}
+
+export const addDocument = async (url:string, path:string) =>{
+  try{
+    const response = await axios.post(
+      `${BASE_URL}/upload`,
+      {
+        params:{
+          path:path,  // куда будет помещен документ пример: CaseLabDocuments/Бухгалтерия
+          url: url // URL внешнего ресурса, который следует загрузить.
+        },
+        headers:{
+          Authorization: token,
+        }
+      }
+    )
+    return response
+  } catch(err){
+    console.log(err)
+  }
+}
+
