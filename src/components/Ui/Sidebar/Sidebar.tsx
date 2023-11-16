@@ -1,8 +1,16 @@
 import React, { FC } from "react";
 import styles from "./Sidebar.module.css";
 
-const Sidebar: FC = () => {
-  return <div className={styles["wrapper"]} data-testid="sidebar_test">Sidebar</div>;
+
+const Sidebar: FC<any> = ({ categories }) => {
+  console.log(categories);
+  const content = categories
+    ? categories.map((item: any) => (
+        <div key={item.resource_id}>{item.name}</div>
+      ))
+    : null;
+
+  return <div className={styles["wrapper"]} data-testid="sidebar_test">{content}</div>;
 };
 
 export default Sidebar;
