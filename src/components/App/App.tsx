@@ -70,7 +70,7 @@ function App() {
         <Layout
           header={<Header />}
           main={<Main />}
-          theme={appTheme} />
+          theme={appTheme}
           footer={<Footer />}
           sidebar={<Sidebar categories={toJS(apiStoreCategories.categories)} />}
         />
