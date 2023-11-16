@@ -5,4 +5,6 @@ export default interface Document {
   file: string; // URL изображения документа (png)
   preview: string; // URL минифицированной версии изображения документа (png)
   sizes: any[];
+  category?: string;
+  path: string;
 }
