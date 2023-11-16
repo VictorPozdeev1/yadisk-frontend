@@ -23,7 +23,9 @@ import {
 import { Outlet } from "react-router";
 import { Main } from "../Ui/Main/Main";
 import { appTheme } from "../theme/theme";
+
 import { deleteDocument, switchCategory} from "../../data/api/request";
+
 
 function App() {
   // Получение категорий
@@ -62,7 +64,9 @@ function App() {
           id={el.resource_id}
           url={el.file}
           category={el.category}
-          //onClick={switchCategory(el.path, `CaseLabDocuments/${}`)}
+
+          // onClick={onSwitchFullItem}
+
         />
       );
     })
