@@ -12,6 +12,7 @@ import { apiStoreCategories, apiStoreDocuments } from "../../store";
 import ItemFull from "../pages/ItemFull/ItemFull";
 import Component404 from "../pages/Component404/Component404";
 import ItemsList from "../pages/ItemsList/ItemsList";
+import Category from "../pages/Category/Category";
 import { toJS } from "mobx";
 
 import {
@@ -19,6 +20,7 @@ import {
   getDocumentsByCategory,
   getDocuments,
 } from "../../data/api/request";
+
 
 function App() {
   // Получение категорий
@@ -68,6 +70,7 @@ function App() {
         />
       }
       ItemsList={<ItemsList items={ItemsListContent} />}
+      Category={<Category items={ItemsListContent} />}
       Component404={<Component404 />}
       ItemFull={<ItemFull />}
     />
