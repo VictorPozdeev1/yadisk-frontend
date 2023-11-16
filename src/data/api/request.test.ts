@@ -1,6 +1,7 @@
 import fetchMock from 'jest-fetch-mock';
 import axios from 'axios';
 import { getCategories, getDocuments } from './request';
+import token from "./token";
 
 beforeEach(() => {
     fetchMock.resetMocks();
@@ -22,7 +23,7 @@ describe('getCategories', () => {
                     fields: '_embedded.items.name, _embedded.items.resource_id',
                 },
                 headers: {
-                    Authorization: expect.any(String),
+                    Authorization: token,
                 },
             })
         );
@@ -44,7 +45,7 @@ describe('getDocuments', () => {
                     fields: '_embedded.items.name, _embedded.items.resource_id, _embedded.items.file',
                 },
                 headers: {
-                    Authorization: expect.any(String),
+                    Authorization: token,
                 },
             })
         );
