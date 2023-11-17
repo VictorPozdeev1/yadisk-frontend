@@ -18,7 +18,23 @@ declare module '@mui/material/styles' {
 export const appTheme:Theme = responsiveFontSizes(createTheme({
   typography: {
     fontFamily: 'Manrope, Roboto, Arial',
-    h6:{
+
+    h1:{
+      fontWeight:'bold',
+    },
+    h2:{//category title
+      fontWeight:'bold',
+    },
+    h3:{
+      fontWeight:'bold',
+    },
+    h4:{
+      fontWeight:'bold',
+    },
+    h5:{
+      fontWeight:'bold',
+    },
+    h6:{//doc table header
       fontWeight:'bold',
     }
   },
@@ -33,15 +49,11 @@ export const appTheme:Theme = responsiveFontSizes(createTheme({
 
   palette: {
     primary: {
-      main: '#035FA2',
-      light: '#EDEDED',
-      dark: '',
-      contrastText: '#181818',
+      main: '#035FA2',//action-blue
+      light: '#EDEDED',//secondary
+      contrastText: '#181818',//font-dark
     },
-    secondary: {
-      main: '#EDEDED',
-      contrastText: '#414042',
-    }
+
   },
 
 }),{
