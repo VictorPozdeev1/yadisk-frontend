@@ -32,16 +32,14 @@ const Layout: FC<LayoutProps> = ({ header, main, footer, sidebar, theme }) => {
             justifyContent={'space-between'}
             wrap={'nowrap'}
             columns={2}
-            sx={{
-              flex: '1',
-            }}
+            flex={1}
           >
             {isTablet &&
               <Grid item maxWidth={250} maxHeight={"100%"} >
                 {sidebar}
               </Grid>}
 
-            <Grid item maxWidth={'100%'}>
+            <Grid item flex={1}>
               {main}
             </Grid>
           </Grid>
