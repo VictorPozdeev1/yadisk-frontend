@@ -13,7 +13,9 @@ interface IItem {
 
 const Category: FC<any> = ({ items }) => {
   const { category } = useParams();
-  const filterItems = items.filter((el: any) => el.props.category === category);
+  const filterItems = category
+    ? items.filter((el: any) => el.props.category === category)
+    : items;
   //const [items, setItems] = useState<IItem[]>([]);
 
   // useEffect(() => {
@@ -38,7 +40,7 @@ const Category: FC<any> = ({ items }) => {
     //     ))}
     // </div>
     <>
-      <h1>{`Это категория ${category}`}</h1>
+      <h1>{`${category ?? "Все документы"}`}</h1>
       <ItemsList items={filterItems} category={category}></ItemsList>
     </>
   );

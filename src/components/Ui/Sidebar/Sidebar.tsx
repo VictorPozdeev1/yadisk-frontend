@@ -1,7 +1,8 @@
 import React, { FC, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import styles from "./Sidebar.module.css";
 import Spinner from "../Spinner/Spinner";
+import Category from "../../pages/Category/Category";
 
 const Sidebar: FC<any> = ({ categories }) => {
   console.log(categories);
@@ -9,9 +10,13 @@ const Sidebar: FC<any> = ({ categories }) => {
     categories.map((item: any) => (
       //<div key={item.resource_id}>{item.name}</div>
       <div>
-        <Link key={item.resource_id} to={`/${item.name}`}>
+        <NavLink
+          key={item.resource_id}
+          to={`/${item.name}`}
+          className={({ isActive }) => (isActive ? styles["active"] : null)}
+        >
           {item.name}
-        </Link>
+        </NavLink>
       </div>
     ))
   ) : (
@@ -20,6 +25,13 @@ const Sidebar: FC<any> = ({ categories }) => {
 
   return (
     <div className={styles["wrapper"]} data-testid="sidebar_test">
+      <NavLink
+        key={"allDocuments"}
+        to={"/"}
+        className={({ isActive }) => (isActive ? styles["active"] : null)}
+      >
+        Все документы
+      </NavLink>
       {content}
     </div>
   );

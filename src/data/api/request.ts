@@ -80,3 +80,66 @@ export const getDocuments = async () => {
     console.log(err);
   }
 };
+
+export const deleteDocument = async (path:string) => {
+  try{
+    const response = await axios.delete(
+      `${BASE_URL}`,
+      {
+        params:{
+          path: path, // путь к документу пример: CaseLabDocuments/Бухгалтерия/Зима.jpg
+        },
+        headers:{
+          Authorization: token,
+        }
+      }
+    )
+    getDocuments();
+    return response
+  } catch(err){
+    console.log(err)
+  }
+};
+
+export const switchCategory = async (from:string, category:string,fileName:string) =>{
+  try{
+    const response = await axios.post(
+      `${BASE_URL}/move`,
+      {
+        params:{
+          from:from, // откуда пример: CaseLabDocuments/Бухгалтерия/Зима.jpg
+          path:`${CATEGORIES_URL}/${category}/${fileName}` // куда пример: CaseLabDocuments/Университет/Зима.jpg
+        },
+        headers:{
+          Authorization: token,
+        }
+      }
+    )
+    getDocuments();
+    return response
+  } catch(err){
+    console.log(err)
+  }
+};
+
+// export const addDocument = async (url:string, path:string) =>{
+//   try{
+//     const response = await axios.post(
+//       `${BASE_URL}/upload`,
+//       {
+//         params:{
+//           path:path,  // куда будет помещен документ пример: CaseLabDocuments/Бухгалтерия
+//           url: url // URL внешнего ресурса, который следует загрузить.
+//         },
+//         headers:{
+//           Authorization: `${token}`,
+//         }
+        
+//       }
+//     )
+//     return response
+//   } catch(err){
+//     console.log(err)
+//   }
+// }
+

@@ -24,6 +24,8 @@ import { Outlet } from "react-router";
 import { Main } from "../Ui/Main/Main";
 import { appTheme } from "../theme/theme";
 
+import { deleteDocument, switchCategory } from "../../data/api/request";
+
 function App() {
   // Получение категорий
   useEffect(() => {
@@ -51,7 +53,7 @@ function App() {
     <div>Nothing</div>
   ) : (
     documents.map((el) => {
-      console.log(el);
+      // console.log(el);
       return (
         <Item
           src={el.preview}
@@ -61,11 +63,16 @@ function App() {
           url={el.file}
           category={el.category}
           // onClick={onSwitchFullItem}
+
+          // onClick={onSwitchFullItem}
         />
       );
     })
   );
 
+  //switchCategory('CaseLabDocuments/Бухгалтерия/Зима.jpg', `Университет`,'Зима.jpg'); - пример перемещения
+  //addDocument('CaseLabDocuments/Бухгалтерия/названиеКартинки1',"https://img.freepik.com/free-photo/forest-landscape_71767-127.jpg?size=626&ext=jpg&ga=GA1.1.1826414947.1699747200&semt=ais"); - пока не работает
+  //deleteDocument("CaseLabDocuments/Бухгалтерия/НазваниеКаринки") - пример удаления
   return (
     <AppRouter
       Layout={
