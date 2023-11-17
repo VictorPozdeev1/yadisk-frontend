@@ -94,28 +94,25 @@ export const deleteDocument = async (path:string) => {
         }
       }
     )
-    getDocuments();
     return response
   } catch(err){
     console.log(err)
   }
 };
 
-export const switchCategory = async (from:string, category:string,fileName:string) =>{
+export const switchCategory = async (from:string, categoy:string, fileName:string) =>{
   try{
+    
     const response = await axios.post(
       `${BASE_URL}/move`,
-      {
-        params:{
-          from:from, // откуда пример: CaseLabDocuments/Бухгалтерия/Зима.jpg
-          path:`${CATEGORIES_URL}/${category}/${fileName}` // куда пример: CaseLabDocuments/Университет/Зима.jpg
-        },
-        headers:{
-          Authorization: token,
-        }
-      }
-    )
-    getDocuments();
+      null, 
+      {headers:{
+        'Authorization': token, 
+      },params:{
+        from:from,
+        path:`${CATEGORIES_URL}/${categoy}/${fileName}`
+      }});
+    //getDocuments();
     return response
   } catch(err){
     console.log(err)
