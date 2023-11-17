@@ -1,26 +1,21 @@
 import React, { FC } from 'react'
 import Document from '../../../data/contracts/Document';
 import { Table, TableBody, TableCell, TableContainer, TableContainerProps, TableHead, TableRow, Typography } from '@mui/material';
-import { DocumentTableRow } from './DocumentTableRow';
+import { DocumentTableRow, DocumentTableRowProps } from './DocumentTableRow';
 import { DocumentTableHead, DocumentTableHeadProps } from './DocumentTableHead';
 import { useTheme } from '@mui/system';
-export interface DocumentTableProps extends TableContainerProps {
+export interface DocumentTableProps extends TableContainerProps, Pick<DocumentTableRowProps, 'onDelete' | 'onCategoryChanged' | 'onView'> {
   headerNames?: string[];
   documentList?: Document[];
 }
-export const DocumentTable: FC<DocumentTableProps> = ({ headerNames, documentList }) => {
-  const tableRows = documentList?.map(row => <DocumentTableRow key={row.resource_id} document={row} />);
+export const DocumentTable: FC<DocumentTableProps> = ({ headerNames = ['Документ', 'Категория'], documentList }) => {
+  const tableRows = documentList?.map((row, idx) => <DocumentTableRow key={`${idx}${row.resource_id.slice(-3)}`} document={row} />);
   return (
-    <TableContainer sx={{ display: 'flex' }}>
-      <Table>
+    <TableContainer sx={{ display: 'flex', }}>
+      <Table size='medium'>
         <DocumentTableHead headerNames={headerNames} />
-
         <TableBody>
-          <DocumentTableRow key={0} />
-          <DocumentTableRow key={1} />
-          <DocumentTableRow key={2} />
-          <DocumentTableRow key={2} />
-          {tableRows ?? tableRows}
+          {tableRows ? tableRows : <span>нет элементов</span>}
         </TableBody>
       </Table>
     </TableContainer>

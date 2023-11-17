@@ -24,6 +24,7 @@ import {
 import { Outlet } from "react-router";
 import { Main } from "../Ui/Main/Main";
 import { appTheme } from "../theme/theme";
+import { DocumentTable } from "../Ui/DocumentTable/DocumentTable";
 
 
 
@@ -77,7 +78,8 @@ function App() {
           sidebar={<Sidebar categories={toJS(apiStoreCategories.categories)} />}
         />
       }
-      ItemsList={<ItemsList items={ItemsListContent} />}
+      // ItemsList={<ItemsList items={ItemsListContent} />}
+      ItemsList={<DocumentTable documentList={documents} />}
       Category={<Category items={ItemsListContent} />}
       Component404={<Component404 />}
       ItemFull={<ItemFull />}

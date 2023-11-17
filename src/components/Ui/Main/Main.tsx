@@ -10,10 +10,10 @@ export const Main: FC<PropsWithChildren<MainProps>> = () => {
 
   return (
     <Box component={'main'} sx={{
-      display: 'flex',
-      flexDirection: 'column'
+      // display: 'flex',
+      // flexDirection: 'column'
     }}>
-      <DocumentTable headerNames={['Документ', 'Категория']} />
+      {/* <DocumentTable  /> */}
       <Outlet />
     </Box>
   )
