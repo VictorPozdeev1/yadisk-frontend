@@ -4,12 +4,27 @@ import { Table, TableBody, TableCell, TableContainer, TableContainerProps, Table
 import { DocumentTableRow, DocumentTableRowProps } from './DocumentTableRow';
 import { DocumentTableHead, DocumentTableHeadProps } from './DocumentTableHead';
 import { useTheme } from '@mui/system';
-export interface DocumentTableProps extends TableContainerProps, Pick<DocumentTableRowProps, 'onDelete' | 'onCategoryChanged' | 'onView'> {
+import Category from '../../../data/contracts/Category';
+export interface DocumentTableProps extends TableContainerProps, Pick<DocumentTableRowProps, 'categoryList' | 'onDelete' | 'onCategoryChange' | 'onView'> {
   headerNames?: string[];
   documentList?: Document[];
 }
-export const DocumentTable: FC<DocumentTableProps> = ({ headerNames = ['Документ', 'Категория'], documentList }) => {
-  const tableRows = documentList?.map((row, idx) => <DocumentTableRow key={`${idx}${row.resource_id.slice(-3)}`} document={row} />);
+export const DocumentTable: FC<DocumentTableProps> = ({
+  headerNames = ['Документ', 'Категория'],
+  documentList,
+  categoryList,
+  onView,
+  onDelete,
+  onCategoryChange
+}) => {
+  const tableRows = documentList?.map((row, idx) => <DocumentTableRow
+    key={`${idx}${row.resource_id.slice(-3)}`}
+    document={row}
+    categoryList={categoryList}
+    onView={onView}
+    onCategoryChange={onCategoryChange}
+    onDelete={onDelete}
+  />);
   return (
     <TableContainer sx={{ display: 'flex', }}>
       <Table size='medium'>
