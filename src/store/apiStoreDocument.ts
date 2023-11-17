@@ -39,7 +39,8 @@ class ApiStoreDocument {
     makeObservable(this, {
       documents: observable,
       loadDocuments: action,
-      delDoc:action
+      delDoc:action,
+      switchCat: action
     });
   }
 }
