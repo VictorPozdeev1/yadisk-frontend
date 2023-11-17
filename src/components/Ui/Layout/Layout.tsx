@@ -25,7 +25,7 @@ const Layout: FC<LayoutProps> = ({ header, main, footer, sidebar, theme }) => {
           display: 'flex',
           flexDirection: 'column',
         }}>
-          {header}
+          {!isTablet && header}
           <Grid
             container
             direction={'row'}
