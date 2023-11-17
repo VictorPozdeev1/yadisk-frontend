@@ -24,8 +24,7 @@ import { Outlet } from "react-router";
 import { Main } from "../Ui/Main/Main";
 import { appTheme } from "../theme/theme";
 
-import { deleteDocument, switchCategory} from "../../data/api/request";
-
+import { deleteDocument, switchCategory } from "../../data/api/request";
 
 function App() {
   // Получение категорий
@@ -51,13 +50,12 @@ function App() {
   //   )[0].sizes[0].url;
   // };
 
-  
   const documents = toJS(apiStoreDocuments.documents);
   const ItemsListContent = !documents ? (
     <div>Nothing</div>
   ) : (
     documents.map((el) => {
-      console.log(el);
+      // console.log(el);
       return (
         <Item
           src={el.preview}

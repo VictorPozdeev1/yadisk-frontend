@@ -13,12 +13,22 @@ const AppRouter: FC<any> = ({
     <Suspense fallback={<Spinner />}>
       <Routes>
         <Route path="/" element={Layout}>
-          <Route index path="" element={ItemsList}></Route>
+          <Route index element={Category}></Route>
+          <Route path="/:category" element={Category} />
+          <Route path="/:category/:id" element={ItemFull} />
+          <Route path="*" element={Component404}></Route>
+        </Route>
+      </Routes>
+
+      {/* <Routes>
+        <Route path="/" element={Layout}>
+          <Route index path="/" element={ItemsList}></Route>
           <Route path="*" element={Component404}></Route>
           <Route path="/:category" element={Category} />
           <Route path="/:category/:id" element={ItemFull} />
+          <Route path="*" element={Component404}></Route>
         </Route>
-      </Routes>
+      </Routes> */}
     </Suspense>
   );
 };
