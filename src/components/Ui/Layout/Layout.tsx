@@ -24,7 +24,9 @@ const Layout: FC<LayoutProps> = ({ header, main, footer, sidebar, theme }) => {
           height: '100vh',
           display: 'flex',
           flexDirection: 'column',
-        }}>
+          maxWidth: '1200px',
+        }}
+        >
           {!isTablet && header}
           <Grid
             container
@@ -33,6 +35,7 @@ const Layout: FC<LayoutProps> = ({ header, main, footer, sidebar, theme }) => {
             wrap={'nowrap'}
             columns={2}
             flex={1}
+
           >
             {isTablet &&
               <Grid item maxWidth={250} maxHeight={"100%"} >
