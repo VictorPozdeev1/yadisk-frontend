@@ -9,10 +9,10 @@ export interface DocumentTableHeadProps extends TableHeadProps {
 export const DocumentTableHead: FC<DocumentTableHeadProps> = ({ headerNames }) => {
   const theme = useTheme();
   return (
-    <TableHead>
-      <TableRow>
+    <TableHead >
+      <TableRow >
         {
-          headerNames && headerNames?.map(val => (<TableCell colSpan={2} sx={{
+          headerNames && headerNames?.map((val, idx) => (<TableCell key={'h' + idx} colSpan={2} sx={{
             textAlign: 'center',
             borderColor: theme.palette.primary.contrastText,
             borderBottomWidth: '2px',
