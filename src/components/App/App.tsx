@@ -23,17 +23,21 @@ import {
 import { Outlet } from "react-router";
 import { Main } from "../Ui/Main/Main";
 import { appTheme } from "../theme/theme";
-
 import { deleteDocument, switchCategory} from "../../data/api/request";
-
 
 function App() {
   // Получение категорий
   useEffect(() => {
     apiStoreCategories.loadCategories().then(() => {
-      apiStoreDocuments.loadDocuments();
+    apiStoreDocuments.loadDocuments();
+
+    //apiStoreDocuments.switchCat("CaseLabDocuments/Бухгалтерия/Мишки.jpg","Университет","Мишки.jpg") - пример перемещения
+  
+    //apiStoreDocuments.delDoc('disk:/CaseLabDocuments/Университет/domik_zima_sneg_.png'); - пример удаления
     });
   }, []);
+
+
 
   // useless
   // const onSwitchFullItem = (url: string, name: string) => {
@@ -64,17 +68,15 @@ function App() {
           id={el.resource_id}
           url={el.file}
           category={el.category}
-
-          // onClick={onSwitchFullItem}
-
+          //onClick={switchCategory(el.path, `CaseLabDocuments/${}`)}
         />
       );
     })
   );
 
-  //switchCategory('CaseLabDocuments/Бухгалтерия/Зима.jpg', `Университет`,'Зима.jpg'); - пример перемещения
-  //addDocument('CaseLabDocuments/Бухгалтерия/названиеКартинки1',"https://img.freepik.com/free-photo/forest-landscape_71767-127.jpg?size=626&ext=jpg&ga=GA1.1.1826414947.1699747200&semt=ais"); - пока не работает
-  //deleteDocument("CaseLabDocuments/Бухгалтерия/НазваниеКаринки") - пример удаления
+  
+  
+  
   return (
     <AppRouter
       Layout={
