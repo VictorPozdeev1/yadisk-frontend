@@ -62,9 +62,9 @@ function App() {
           id={el.resource_id}
           url={el.file}
           category={el.category}
-          // onClick={onSwitchFullItem}
 
           // onClick={onSwitchFullItem}
+
         />
       );
     })
