@@ -15,6 +15,12 @@ declare module '@mui/material/styles' {
     desktop: true;
   }
 }
+const themeColors={
+  fontDark:"#181818",
+  actionBlue:'#035FA2',
+  secondary:'#EDEDED',
+
+}
 export const appTheme:Theme = responsiveFontSizes(createTheme({
   typography: {
     fontFamily: 'Manrope, Roboto, Arial',
@@ -23,20 +29,29 @@ export const appTheme:Theme = responsiveFontSizes(createTheme({
       fontWeight:'bold',
     },
     h2:{//category title
+      color:themeColors.fontDark,
       fontWeight:'bold',
     },
     h3:{
+      color:themeColors.fontDark,
       fontWeight:'bold',
     },
     h4:{
+      color:themeColors.fontDark,
       fontWeight:'bold',
     },
     h5:{
+      color:themeColors.fontDark,
       fontWeight:'bold',
     },
     h6:{//doc table header
+      color:themeColors.fontDark,
       fontWeight:'bold',
-    }
+    },
+    body1:{
+      color:themeColors.fontDark,
+      fontWeight:'600',
+    },
   },
   breakpoints:{
     values:{
@@ -49,11 +64,13 @@ export const appTheme:Theme = responsiveFontSizes(createTheme({
 
   palette: {
     primary: {
-      main: '#035FA2',//action-blue
-      light: '#EDEDED',//secondary
-      contrastText: '#181818',//font-dark
+      main: themeColors.actionBlue,//action-blue
+      light: themeColors.secondary,
+      contrastText: themeColors.fontDark,//font-dark
     },
-
+    secondary:{//for table buttons
+      main: themeColors.fontDark,//font-dark
+    }
   },
 
 }),{
