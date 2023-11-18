@@ -21,7 +21,7 @@ const themeColors={
   secondary:'#EDEDED',
 
 }
-export const appTheme:Theme = responsiveFontSizes(createTheme({
+export const appTheme:Theme = createTheme({
   typography: {
     fontFamily: 'Manrope, Roboto, Arial',
 
@@ -29,6 +29,8 @@ export const appTheme:Theme = responsiveFontSizes(createTheme({
       fontWeight:'bold',
     },
     h2:{//category title
+      fontSize:36,
+      lineHeight:1.5,
       color:themeColors.fontDark,
       fontWeight:'bold',
     },
@@ -73,6 +75,4 @@ export const appTheme:Theme = responsiveFontSizes(createTheme({
     }
   },
 
-}),{
-  breakpoints:['tablet'],
 });
