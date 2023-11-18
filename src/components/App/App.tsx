@@ -67,12 +67,10 @@ function App() {
           category={el.category}
 
           // onClick={onSwitchFullItem}
-
         />
       );
     })
   );
-
 
   return (
     <AppRouter
@@ -86,8 +84,8 @@ function App() {
         />
       }
       // ItemsList={<ItemsList items={ItemsListContent} />}
-      ItemsList={<DocumentTable documentList={documents} />}
-      Category={<Category items={ItemsListContent} />}
+      // ItemsList={<DocumentTable documentList={documents} />}
+      Category={<Category items={documents} />}
       Component404={<Component404 />}
       ItemFull={<ItemFull />}
     />
