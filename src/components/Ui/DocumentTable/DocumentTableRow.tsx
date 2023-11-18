@@ -1,11 +1,12 @@
 import React, { FC, useState } from 'react';
 import Document from '../../../data/contracts/Document';
 import Category from '../../../data/contracts/Category';
-import { IconButton, MenuItem, Select, TableCell, TableRow, TableRowProps, Typography } from '@mui/material';
+import { IconButton, MenuItem, Select, TableCell, TableRow, TableRowProps, Typography, useMediaQuery } from '@mui/material';
 import FileOpenOutlinedIcon from '@mui/icons-material/FileOpenOutlined';
 import DeleteForeverRoundedIcon from '@mui/icons-material/DeleteForeverRounded';
 import { apiStoreCategories } from '../../../store';
 import { toJS } from 'mobx';
+import { Theme } from '@mui/system';
 
 export interface DocumentTableRowProps extends TableRowProps {
   document?: Document;
@@ -23,26 +24,40 @@ export const DocumentTableRow: FC<DocumentTableRowProps> = ({
 }) => {
 
   const [documentID, setDocumentID] = useState(document?.resource_id);
-
+  const isMobile = useMediaQuery((theme: Theme) => theme.breakpoints.down('tablet'));
+  const smallIconStyle = {
+    width: 20,
+    height: 20,
+  }
   const categoryMenu = (categoryList ?? toJS<Category[]>(apiStoreCategories.categories))?.map((item: Category, idx) => (
     <MenuItem
       key={`${idx}_${item.resource_id.slice(-3)}`} value={item.resource_id}
+      sx={isMobile ? { fontSize: 12 } : { fontSize: 16 }}
     >
       {item.name}
     </MenuItem>))
   return (
-    <TableRow>
+    <TableRow >
       <TableCell>
-        <IconButton color='secondary' onClick={(e) => {
-          onView && onView({ documentID });
-          console.log('view', { documentID });
-        }}>
-          <FileOpenOutlinedIcon />
+        <IconButton
+          color='secondary'
+          onClick={(e) => {
+            onView && onView({ documentID });
+            console.log('view', { documentID });
+          }}
+          sx={{}}>
+          <FileOpenOutlinedIcon sx={isMobile ?
+            smallIconStyle : {}
+          } />
         </IconButton>
       </TableCell>
 
       <TableCell >
-        <Typography variant='body1' component='span'>
+        <Typography
+          variant='body1'
+          component='span'
+          sx={isMobile ? { fontSize: 12 } : {}}
+        >
           {document?.name}
         </Typography>
       </TableCell>
@@ -51,6 +66,7 @@ export const DocumentTableRow: FC<DocumentTableRowProps> = ({
         <Select
           variant='standard'
           value={document?.categoryId ?? "-1"}
+          sx={isMobile ? { fontSize: 12 } : { fontSize: 16 }}
           onChange={(e) => {
             onCategoryChange && onCategoryChange({
               newCategoryID: e.target.value,
@@ -65,6 +81,7 @@ export const DocumentTableRow: FC<DocumentTableRowProps> = ({
           <MenuItem
             key={'-1'}
             value={'-1'}
+            sx={isMobile ? { fontSize: 12 } : { fontSize: 16 }}
           >
             {'не задана категория'}
           </MenuItem>
@@ -73,11 +90,16 @@ export const DocumentTableRow: FC<DocumentTableRowProps> = ({
       </TableCell>
 
       <TableCell >
-        <IconButton onClick={(e) => {
-          onDelete && onDelete({ documentID });
-          console.log('delete', { documentID })
-        }}>
-          <DeleteForeverRoundedIcon color='secondary' />
+        <IconButton
+          color='secondary'
+          onClick={(e) => {
+            onDelete && onDelete({ documentID });
+            console.log('delete', { documentID })
+          }}>
+          <DeleteForeverRoundedIcon
+            sx={isMobile ?
+              smallIconStyle : {}
+            } />
         </IconButton>
       </TableCell>
     </TableRow>
