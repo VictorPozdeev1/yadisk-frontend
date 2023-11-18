@@ -5,13 +5,12 @@ import Spinner from "../Spinner/Spinner";
 import Category from "../../pages/Category/Category";
 
 const Sidebar: FC<any> = ({ categories }) => {
-  console.log(categories);
+  // console.log(categories);
   const content = categories ? (
     categories.map((item: any) => (
       //<div key={item.resource_id}>{item.name}</div>
-      <div>
+      <div key={item.resource_id}>
         <NavLink
-          key={item.resource_id}
           to={`/${item.name}`}
           className={({ isActive }) => (isActive ? styles["active"] : null)}
         >
@@ -25,14 +24,19 @@ const Sidebar: FC<any> = ({ categories }) => {
 
   return (
     <div className={styles["wrapper"]} data-testid="sidebar_test">
-      <NavLink
-        key={"allDocuments"}
-        to={"/"}
-        className={({ isActive }) => (isActive ? styles["active"] : null)}
-      >
-        Все документы
-      </NavLink>
-      {content}
+      <div className={styles["logo-wrapper"]}>
+        <div className={styles["logo"]}>logo</div>
+      </div>
+      <div className="category-selector">
+        <NavLink
+          key={"allDocuments"}
+          to={"/"}
+          className={({ isActive }) => (isActive ? styles["active"] : null)}
+        >
+          Все документы
+        </NavLink>
+        {content}
+      </div>
     </div>
   );
 };

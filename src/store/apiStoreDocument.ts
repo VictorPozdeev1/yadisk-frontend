@@ -6,7 +6,12 @@ import {
   observable,
   action,
 } from "mobx";
-import { getDocumentsByCategory, getDocuments, deleteDocument, switchCategory } from "../data/api/request";
+import {
+  getDocumentsByCategory,
+  getDocuments,
+  deleteDocument,
+  switchCategory,
+} from "../data/api/request";
 import Document from "../data/contracts/Document";
 
 class ApiStoreDocument {
@@ -19,16 +24,18 @@ class ApiStoreDocument {
     });
   }
 
-  async delDoc(path:string){
-    deleteDocument(path);
+  // переписал на стрелочную,была проблема с контекстом
+  delDoc = async (path: string) => {
+    await deleteDocument(path);
     const documents = (await getDocuments()) as Document[];
+    console.log(documents);
     runInAction(() => {
       this.documents = documents;
     });
-  }
+  };
 
-  async switchCat(from:string, categoy:string, fileName:string){
-    switchCategory(from,categoy,fileName);
+  async switchCat(from: string, category: string, fileName: string) {
+    switchCategory(from, category, fileName);
     const documents = (await getDocuments()) as Document[];
     runInAction(() => {
       this.documents = documents;
@@ -39,8 +46,8 @@ class ApiStoreDocument {
     makeObservable(this, {
       documents: observable,
       loadDocuments: action,
-      delDoc:action,
-      switchCat: action
+      delDoc: action,
+      switchCat: action,
     });
   }
 }

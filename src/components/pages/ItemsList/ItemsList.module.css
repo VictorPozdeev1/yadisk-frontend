@@ -1,4 +1,16 @@
 .wrapper {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  width: calc(100vw - 250px);
+}
+.row-header {
+  width: 100%;
+  height: 66px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-bottom: 2px solid #181818;
+}
+.td-wrapper {
+  padding: 0 50px;
 }

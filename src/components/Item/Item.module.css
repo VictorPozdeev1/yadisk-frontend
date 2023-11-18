@@ -1,5 +1,15 @@
-.item-wrapper {
-  margin: 10px;
+.wrapper {
+  height: 81px;
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.icon {
+  margin-right: 50px;
+}
+.NavLink {
+  text-decoration: none;
+}
+.button {
+  margin-left: 50px;
 }

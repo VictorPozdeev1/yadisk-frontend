@@ -64,20 +64,19 @@ function App() {
           id={el.resource_id}
           url={el.file}
           category={el.category}
-
+          path={el.path}
+          onDelete={apiStoreDocuments.delDoc}
           // onClick={onSwitchFullItem}
-
         />
       );
     })
   );
 
-
   return (
     <AppRouter
       Layout={
         <Layout
-          header={<Header />}
+          // header={<Header />}
           main={<Main />}
           theme={appTheme}
           footer={<Footer />}
