@@ -1,9 +1,9 @@
 import React, { FC, useState } from 'react';
 import Document from '../../../data/contracts/Document';
+import Category from '../../../data/contracts/Category';
 import { IconButton, MenuItem, Select, TableCell, TableRow, TableRowProps, Typography } from '@mui/material';
 import FileOpenOutlinedIcon from '@mui/icons-material/FileOpenOutlined';
 import DeleteForeverRoundedIcon from '@mui/icons-material/DeleteForeverRounded';
-import Category from '../../../data/contracts/Category';
 import { apiStoreCategories } from '../../../store';
 import { toJS } from 'mobx';
 
@@ -22,41 +22,60 @@ export const DocumentTableRow: FC<DocumentTableRowProps> = ({
   onDelete
 }) => {
 
-  const [status, setstatus] = useState('');
+  const [documentID, setDocumentID] = useState(document?.resource_id);
 
-  const categoryMenu = (categoryList ?? toJS(apiStoreCategories.categories) as Category[])?.map((item: Category) => (<MenuItem value={item.resource_id}>{item.name}</MenuItem>))
+  const categoryMenu = (categoryList ?? toJS<Category[]>(apiStoreCategories.categories))?.map((item: Category, idx) => (
+    <MenuItem
+      key={`${idx}_${item.resource_id.slice(-3)}`} value={item.resource_id}
+    >
+      {item.name}
+    </MenuItem>))
   return (
     <TableRow>
       <TableCell>
         <IconButton color='secondary' onClick={(e) => {
-          onView && onView(e.target);
-          console.log('view', e.currentTarget);
+          onView && onView({ documentID });
+          console.log('view', { documentID });
         }}>
           <FileOpenOutlinedIcon />
         </IconButton>
       </TableCell>
+
       <TableCell >
         <Typography variant='body1' component='span'>
           {document?.name}
         </Typography>
       </TableCell>
+
       <TableCell>
         <Select
           variant='standard'
-          value={''}
+          value={document?.categoryId ?? "-1"}
           onChange={(e) => {
-            onCategoryChange && onCategoryChange(e.target)
-            console.log('change category', e.currentTarget)
+            onCategoryChange && onCategoryChange({
+              newCategoryID: e.target.value,
+              documentID
+            })
+            console.log('change category', {
+              newCategoryID: e.target.value,
+              documentID
+            })
           }}
         >
+          <MenuItem
+            key={'-1'}
+            value={'-1'}
+          >
+            {'не задана категория'}
+          </MenuItem>
           {categoryMenu}
         </Select>
-        {document?.categoryId}
       </TableCell>
+
       <TableCell >
         <IconButton onClick={(e) => {
-          onDelete && onDelete(e.target);
-          console.log('delete', e.currentTarget)
+          onDelete && onDelete({ documentID });
+          console.log('delete', { documentID })
         }}>
           <DeleteForeverRoundedIcon color='secondary' />
         </IconButton>
