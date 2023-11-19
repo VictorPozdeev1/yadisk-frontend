@@ -1,0 +1,162 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Sidebar component Sidebar snapshot 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        data-testid="sidebar_test"
+        style="height: 100%; display: flex; flex-direction: column; align-items: center; text-align: left; position: relative;"
+      >
+        <div
+          data-testid="logo_test"
+        >
+          <img
+            alt="Росатом"
+            class="logoImage"
+            src="/images/logo.png"
+          />
+        </div>
+        <div
+          data-testid="toggle-el"
+          style="padding: 12px 24px 12px 24px; width: 90%; background-color: rgb(255, 255, 255); border-radius: 7px;"
+        >
+          <a
+            aria-current="page"
+            class="active"
+            data-testid="toggle-go-home-btn"
+            href="/"
+            style="text-decoration: none; color: rgb(3, 95, 162); cursor: pointer;"
+          >
+            Все документы
+          </a>
+        </div>
+        <button
+          class="MuiButtonBase-root MuiFab-root MuiFab-extended MuiFab-sizeLarge MuiFab-default MuiFab-root MuiFab-extended MuiFab-sizeLarge MuiFab-default css-r318k3-MuiButtonBase-root-MuiFab-root"
+          tabindex="0"
+          type="button"
+        >
+          Документ
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+            data-testid="AddIcon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"
+            />
+          </svg>
+          <span
+            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+          />
+        </button>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      data-testid="sidebar_test"
+      style="height: 100%; display: flex; flex-direction: column; align-items: center; text-align: left; position: relative;"
+    >
+      <div
+        data-testid="logo_test"
+      >
+        <img
+          alt="Росатом"
+          class="logoImage"
+          src="/images/logo.png"
+        />
+      </div>
+      <div
+        data-testid="toggle-el"
+        style="padding: 12px 24px 12px 24px; width: 90%; background-color: rgb(255, 255, 255); border-radius: 7px;"
+      >
+        <a
+          aria-current="page"
+          class="active"
+          data-testid="toggle-go-home-btn"
+          href="/"
+          style="text-decoration: none; color: rgb(3, 95, 162); cursor: pointer;"
+        >
+          Все документы
+        </a>
+      </div>
+      <button
+        class="MuiButtonBase-root MuiFab-root MuiFab-extended MuiFab-sizeLarge MuiFab-default MuiFab-root MuiFab-extended MuiFab-sizeLarge MuiFab-default css-r318k3-MuiButtonBase-root-MuiFab-root"
+        tabindex="0"
+        type="button"
+      >
+        Документ
+        <svg
+          aria-hidden="true"
+          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+          data-testid="AddIcon"
+          focusable="false"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"
+          />
+        </svg>
+        <span
+          class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+        />
+      </button>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
