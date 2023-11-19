@@ -5,11 +5,14 @@ import Spinner from "../Spinner/Spinner";
 import { Fab } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import Category from "../../pages/Category/Category";
+import { apiStoreCategories } from "../../../store";
+import { toJS } from "mobx";
 
-const Sidebar: FC<any> = ({ categories }) => {
+const Sidebar: FC<any> = () => {
     const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
-  console.log(categories);
+    const categories = toJS(apiStoreCategories.categories);
+    
   const content = categories ? (
 
     categories.map((item: any) => (

@@ -76,7 +76,7 @@ function App() {
     <AppRouter
       Layout={
         <Layout
-          header={<Header categories={toJS(apiStoreCategories.categories)} />}
+          header={<Header />}
           main={<Main />}
           theme={appTheme}
           footer={<Footer />}

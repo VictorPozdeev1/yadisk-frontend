@@ -3,6 +3,8 @@ import { Drawer, Fab, useMediaQuery } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import {Link, NavLink} from "react-router-dom";
 import Spinner from "../../Spinner/Spinner";
+import { apiStoreCategories } from "../../../../store";
+import { toJS } from "mobx";
 
 interface MobileMenuProps {
     categories: any[];
@@ -10,12 +12,11 @@ interface MobileMenuProps {
     onClose: () => void;
 }
 
-const MobileMenu: React.FC<MobileMenuProps> = ({ categories, open, onClose }) => {
+const MobileMenu: React.FC<MobileMenuProps> = ({ open, onClose }) => {
     const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-
-
-
-    console.log(categories);
+    
+    const categories = toJS(apiStoreCategories.categories);
+    
     const content = categories ? (
 
         categories.map((item: any) => (
