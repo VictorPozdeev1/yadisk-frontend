@@ -13,6 +13,25 @@ function getCategoryFromPath(path: string): string {
 export const CATEGORIES_URL = "CaseLabDocuments",
     BASE_URL = "https://cloud-api.yandex.net/v1/disk/resources";
 
+const handleRequestError = (error: any) => {
+    if (!navigator.onLine) {
+        console.log("Error: no internet access");
+    } else if (error.response) {
+        const { status, data } = error.response;
+        console.log(`Error ${status}: ${data}`);
+        if (status === 401) {
+            console.log(`Error: Handle unauthorized access`);
+        } else if (status === 404) {
+            console.log(`Error: Handle not found`);
+        }
+    } else if (error.request) {
+        console.log("No response received");
+    } else {
+        console.log(`Error: ${error.message}`);
+    }
+    throw error;
+};
+
 const YandexDiskAPI: YandexDiskAPI = {
     getCategories: async () => {
         try {
@@ -31,8 +50,8 @@ const YandexDiskAPI: YandexDiskAPI = {
 
             return response.data._embedded.items;
         } catch (err) {
-            console.log(err);
-            throw err;
+            handleRequestError(err);
+            throw err
         }
     },
 
@@ -54,7 +73,7 @@ const YandexDiskAPI: YandexDiskAPI = {
 
             return response.data._embedded.items;
         } catch (err) {
-            console.log(err);
+            handleRequestError(err);
             throw err;
         }
     },
@@ -79,7 +98,7 @@ const YandexDiskAPI: YandexDiskAPI = {
                 category: getCategoryFromPath(el.path),
             }));
         } catch (err) {
-            console.log(err);
+            handleRequestError(err);
             throw err;
         }
     },
@@ -97,9 +116,9 @@ const YandexDiskAPI: YandexDiskAPI = {
                     },
                 }
             );
-            return response;
+
         } catch (err) {
-            console.log(err);
+            handleRequestError(err);
             throw err;
         }
     },
@@ -118,10 +137,10 @@ const YandexDiskAPI: YandexDiskAPI = {
                         path: `${CATEGORIES_URL}/${category}/${fileName}`
                     }
                 });
-            //getDocuments();
-            return response;
+            await YandexDiskAPI.getDocuments();
+            return response.data;
         } catch (err) {
-            console.log(err);
+            handleRequestError(err);
             throw err;
         }
     },
@@ -147,7 +166,3 @@ const YandexDiskAPI: YandexDiskAPI = {
     }*/
 };
 export default YandexDiskAPI;
-
-
-
-
