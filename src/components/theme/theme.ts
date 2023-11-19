@@ -1,4 +1,4 @@
-import { createTheme } from '@mui/material/styles';
+import { createTheme, responsiveFontSizes } from '@mui/material/styles';
 import { Theme } from '@mui/system';
 
 // переопределяем инерфейс брейкпоинтов
@@ -15,15 +15,50 @@ declare module '@mui/material/styles' {
     desktop: true;
   }
 }
+const themeColors={
+  fontDark:"#181818",
+  actionBlue:'#035FA2',
+  secondary:'#EDEDED',
 
+}
 export const appTheme:Theme = createTheme({
   typography: {
-    fontFamily: ' Manrope, Roboto, Arial',
+    fontFamily: 'Manrope, Roboto, Arial',
+
+    h1:{
+      fontWeight:'bold',
+    },
+    h2:{//category title
+      fontSize:36,
+      lineHeight:1.5,
+      color:themeColors.fontDark,
+      fontWeight:'bold',
+    },
+    h3:{
+      color:themeColors.fontDark,
+      fontWeight:'bold',
+    },
+    h4:{
+      color:themeColors.fontDark,
+      fontWeight:'bold',
+    },
+    h5:{
+      color:themeColors.fontDark,
+      fontWeight:'bold',
+    },
+    h6:{//doc table header
+      color:themeColors.fontDark,
+      fontWeight:'bold',
+    },
+    body1:{
+      color:themeColors.fontDark,
+      fontWeight:'600',
+    },
   },
   breakpoints:{
     values:{
       mobile:320,
-      tablet:768,
+      tablet:805,
       laptop:1200,
       desktop:1523,
     }
@@ -31,15 +66,13 @@ export const appTheme:Theme = createTheme({
 
   palette: {
     primary: {
-      main: '#035FA2',
-      light: '#EDEDED',
-      dark: '',
-      contrastText: '#181818',
+      main: themeColors.actionBlue,//action-blue
+      light: themeColors.secondary,
+      contrastText: themeColors.fontDark,//font-dark
     },
-    secondary: {
-      main: '#EDEDED',
-      contrastText: '#414042',
+    secondary:{//for table buttons
+      main: themeColors.fontDark,//font-dark
     }
-  }
+  },
 
 });

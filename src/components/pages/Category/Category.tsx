@@ -2,8 +2,7 @@ import React, { FC, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Item from "../../Item/Item";
 import ItemsList from "../ItemsList/ItemsList";
-
-import "./Category.module.css";
+import { DocumentTable } from "../../Ui/DocumentTable/DocumentTable";
 
 interface IItem {
   id: string;
@@ -14,7 +13,7 @@ interface IItem {
 const Category: FC<any> = ({ items }) => {
   const { category } = useParams();
   const filterItems = category
-    ? items.filter((el: any) => el.props.category === category)
+    ? items.filter((el: any) => el.category === category)
     : items;
   //const [items, setItems] = useState<IItem[]>([]);
 
@@ -41,7 +40,8 @@ const Category: FC<any> = ({ items }) => {
     // </div>
     <>
       <h1>{`${category ?? "Все документы"}`}</h1>
-      <ItemsList items={filterItems} category={category}></ItemsList>
+      <DocumentTable documentList={filterItems}></DocumentTable>
+      {/* <ItemsList items={filterItems} category={category}></ItemsList> */}
     </>
   );
 };
