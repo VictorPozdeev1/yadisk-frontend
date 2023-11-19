@@ -2,12 +2,11 @@ import { render, screen } from '@testing-library/react'
 import { BrowserRouter } from 'react-router-dom'
 import ItemFull from './ItemFull'
 
-test('ItemFull component', () => {
+test('ItemFull component', async () => {
     render(
         <BrowserRouter>
             <ItemFull
             />
         </BrowserRouter>
     )
-
 })
