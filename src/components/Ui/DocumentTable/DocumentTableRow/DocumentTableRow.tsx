@@ -1,6 +1,6 @@
 import React, { FC, useState } from "react";
-import Document from "../../../data/contracts/Document";
-import Category from "../../../data/contracts/Category";
+import Document from "../../../../data/contracts/Document";
+import Category from "../../../../data/contracts/Category";
 import {
   IconButton,
   MenuItem,
@@ -13,11 +13,11 @@ import {
 } from "@mui/material";
 import FileOpenOutlinedIcon from "@mui/icons-material/FileOpenOutlined";
 import DeleteForeverRoundedIcon from "@mui/icons-material/DeleteForeverRounded";
-import { apiStoreCategories } from "../../../store";
+import { apiStoreCategories } from "../../../../store";
 import { toJS } from "mobx";
 import { Theme } from "@mui/system";
 import { Link } from "react-router-dom";
-import { deleteDocument, switchCategory } from "../../../data/api/request";
+import { deleteDocument, switchCategory } from "../../../../data/api/request";
 export interface DocumentTableRowProps extends TableRowProps {
   document?: Document;
   categoryList?: Category[]; //пока не исползуется, берём из mobx
