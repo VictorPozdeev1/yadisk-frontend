@@ -21,6 +21,7 @@ const themeColors={
   secondary:'#EDEDED',
 
 }
+
 export const appTheme:Theme = createTheme({
   typography: {
     fontFamily: 'Manrope, Roboto, Arial',
@@ -74,5 +75,17 @@ export const appTheme:Theme = createTheme({
       main: themeColors.fontDark,//font-dark
     }
   },
+  components:{
+    MuiTableCell:{
+      styleOverrides:{
+        root:({theme})=>({
+          [theme.breakpoints.down('tablet')]:{
+            paddingRight:2,
+            paddingLeft:2,
+          }
+        })
+      },
 
+    }
+  }
 });

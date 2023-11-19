@@ -43,10 +43,20 @@ export const DocumentTable: FC<DocumentTableProps> = ({
     />
   ));
   return (
-    <TableContainer sx={{ display: "flex" }}>
-      <Table size="medium">
+    <TableContainer sx={{
+      display: "flex",
+    }}>
+      <Table
+        size="medium"
+        sx={{
+          display: "grid",
+          flexDirection: 'column'
+        }}>
         <DocumentTableHead headerNames={headerNames} />
-        <TableBody>
+        <TableBody sx={{
+          display: 'grid',
+          width: "100%",
+        }}>
           {tableRows ? tableRows : <span>нет элементов</span>}
         </TableBody>
       </Table>
