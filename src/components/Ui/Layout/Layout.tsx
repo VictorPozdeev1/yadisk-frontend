@@ -1,55 +1,59 @@
-import React, { FC, PropsWithChildren } from "react";
-import styles from "./Layout.module.css";
-import { appTheme } from "../../theme/theme";
-import { Container, CssBaseline, Grid, useMediaQuery } from "@mui/material";
+import React, { FC } from "react";
+import { CssBaseline, Container, Grid, useMediaQuery, ThemeProvider } from "@mui/material";
 import { Theme } from '@mui/system';
-import { ThemeProvider } from '@mui/material/styles';
-export interface LayoutProps {
+import { appTheme } from "../../theme/theme";
+
+interface LayoutProps {
   header?: JSX.Element;
   main?: JSX.Element;
   footer?: JSX.Element;
   sidebar?: JSX.Element;
   theme?: Theme;
-
 }
-const Layout: FC<LayoutProps> = ({ header, main, footer, sidebar, theme }) => {
 
-  const breakpointTablet = appTheme?.breakpoints.up('tablet');
-  //проверяет если разрешение экрана меньше брейкпоинта
+const Layout: FC<LayoutProps> = ({ header, main, footer, sidebar, theme = appTheme }) => {
+  const breakpointTablet = theme.breakpoints.up('tablet');
   const isTablet = useMediaQuery(breakpointTablet);
+
   return (
-    <ThemeProvider theme={theme as Theme ?? appTheme}>
-      <CssBaseline>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
         <Container disableGutters={isTablet} sx={{
           height: '100vh',
           display: 'flex',
           flexDirection: 'column',
-          maxWidth: '1200px',
-        }}
-        >
-          {!isTablet && header}
+        }}>
           <Grid
-            container
-            direction={'row'}
-            justifyContent={'space-between'}
-            wrap={'nowrap'}
-            columns={2}
-            flex={1}
-
+              container
+              direction={!isTablet ? 'column' : 'row'}
+              justifyContent={'space-between'}
+              wrap={'nowrap'}
+              columns={2}
+              sx={{
+                flex: '1'
+              }}
           >
-            {isTablet &&
-              <Grid item maxWidth={250} maxHeight={"100%"} >
-                {sidebar}
-              </Grid>}
+            {!isTablet &&
+                <Grid item sx={{ maxWidth: '100%', backgroundColor: "#ffffff" }}>
+                  {header}
+                </Grid>}
 
-            <Grid item flex={1}>
-              {main}
+            {isTablet &&
+                <Grid item sx={{ flexBasis: '25%', maxWidth: 250, maxHeight: "100%", backgroundColor: "#EDEDED" }}>
+                  {sidebar}
+                </Grid>}
+
+            <Grid item sx={{ flex: '3' }}>
+              {main && (
+                  <Grid item sx={{ flex: '1' }}>
+                    {main}
+                  </Grid>
+              )}
             </Grid>
           </Grid>
-          {footer}
+          {/*{footer}*/}
         </Container>
-      </CssBaseline>
-    </ThemeProvider>
+      </ThemeProvider>
   );
 };
 
