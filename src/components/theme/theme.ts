@@ -58,7 +58,7 @@ export const appTheme:Theme = createTheme({
   breakpoints:{
     values:{
       mobile:320,
-      tablet:768,
+      tablet:805,
       laptop:1200,
       desktop:1523,
     }

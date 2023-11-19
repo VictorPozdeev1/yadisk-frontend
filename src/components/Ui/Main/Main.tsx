@@ -19,7 +19,7 @@ export const Main: FC<PropsWithChildren<MainProps>> = ({ title }) => {
       component={"main"}
       direction={"column"}
       gap={"20px"}
-      p={isDesktop ? "25px 20px" : "30px 0"}
+      p={isDesktop ? "25px 20px" : "10px 0"}
     >
       <Grid item>
         <Typography

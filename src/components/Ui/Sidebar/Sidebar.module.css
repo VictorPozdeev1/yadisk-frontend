@@ -1,7 +1,24 @@
-.wrapper {
-  /* border: 1px solid black; */
-  width: 250px;
+.logoImage {
+  width: 80%;
+  height: auto;
+  margin-left: 1em;
+  margin-top: 1em;
+  margin-bottom: 1em;
 }
-.active {
-  color: #035fa2;
+
+.active{
+  text-decoration: none;
+  color: #035FA2;
+  cursor: pointer;
+}
+
+.wrapper{
+  text-decoration: none;
+  padding: 12px 24px 12px 24px;
+  width: 90%;
+}
+
+.wrapper:active{
+background-color: #ffffff;
+  border-radius: 7px;
 }
