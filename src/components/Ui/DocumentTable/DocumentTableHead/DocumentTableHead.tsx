@@ -11,7 +11,11 @@ export const DocumentTableHead: FC<DocumentTableHeadProps> = ({ headerNames }) =
   const isMobile = useMediaQuery(theme.breakpoints.down('tablet'))
   return (
     <TableHead >
-      <TableRow >
+      <TableRow
+        sx={{
+          display: 'grid',
+          gridAutoFlow: 'column',
+        }}>
         {
           headerNames && headerNames?.map((val, idx) => (<TableCell key={'h' + idx} colSpan={2} sx={{
             textAlign: 'center',

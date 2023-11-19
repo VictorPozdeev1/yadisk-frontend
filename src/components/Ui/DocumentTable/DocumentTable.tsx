@@ -10,16 +10,16 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
-import { DocumentTableRow, DocumentTableRowProps } from "./DocumentTableRow";
-import { DocumentTableHead, DocumentTableHeadProps } from "./DocumentTableHead";
+import { DocumentTableRow, DocumentTableRowProps } from "./DocumentTableRow/DocumentTableRow";
+import { DocumentTableHead, DocumentTableHeadProps } from "./DocumentTableHead/DocumentTableHead";
 import { useTheme } from "@mui/system";
 import Category from "../../../data/contracts/Category";
 export interface DocumentTableProps
   extends TableContainerProps,
-    Pick<
-      DocumentTableRowProps,
-      "categoryList" | "onDelete" | "onCategoryChange" | "onView"
-    > {
+  Pick<
+    DocumentTableRowProps,
+    "categoryList" | "onDelete" | "onCategoryChange" | "onView"
+  > {
   headerNames?: string[];
   documentList?: Document[];
 }
@@ -43,10 +43,20 @@ export const DocumentTable: FC<DocumentTableProps> = ({
     />
   ));
   return (
-    <TableContainer sx={{ display: "flex" }}>
-      <Table size="medium">
+    <TableContainer sx={{
+      display: "flex",
+    }}>
+      <Table
+        size="medium"
+        sx={{
+          display: "grid",
+          flexDirection: 'column'
+        }}>
         <DocumentTableHead headerNames={headerNames} />
-        <TableBody>
+        <TableBody sx={{
+          display: 'grid',
+          width: "100%",
+        }}>
           {tableRows ? tableRows : <span>нет элементов</span>}
         </TableBody>
       </Table>
