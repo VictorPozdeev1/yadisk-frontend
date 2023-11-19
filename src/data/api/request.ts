@@ -2,7 +2,7 @@ import axios from "axios";
 import Document from "../contracts/Document";
 import Category from "../contracts/Category";
 import token from "./token";
-import { YandexDiskAPI} from "./YandexDiskAPI";
+import { YandexDiskAPI } from "./YandexDiskAPI";
 
 function getCategoryFromPath(path: string): string {
     const parts = path.split("/");
@@ -104,7 +104,7 @@ const YandexDiskAPI: YandexDiskAPI = {
         }
     },
 
-    switchCategory: async (from: string, categoy: string, fileName: string) => {
+    switchCategory: async (from: string, category: string, fileName: string) => {
         try {
             const response = await axios.post(
                 `${BASE_URL}/move`,
@@ -115,7 +115,7 @@ const YandexDiskAPI: YandexDiskAPI = {
                     },
                     params: {
                         from: from,
-                        path: `${CATEGORIES_URL}/${categoy}/${fileName}`
+                        path: `${CATEGORIES_URL}/${category}/${fileName}`
                     }
                 });
             //getDocuments();

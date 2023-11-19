@@ -1,5 +1,6 @@
 import Category from "../contracts/Category";
 import Document from "../contracts/Document";
+import category from "../../components/pages/Category/Category";
 
 
 export interface YandexDiskAPI {
@@ -19,11 +20,11 @@ export interface YandexDiskAPI {
     //moveDocument(documentId: string, newCategoryId: string): Promise<void>;
 
     // Удаление документа.
-    deleteDocument(documentId: string): Promise<any>;
+    deleteDocument(documentId: string): Promise<void>;
 
-    getDocumentsByCategory: (categories: string) => Promise<any>;
+    getDocumentsByCategory(categories: string): Promise<Document[]>;
 
-    switchCategory: (from: string, category: string, fileName: string) => Promise<any>;
+    switchCategory (from: string, category: string, fileName: string): Promise<Category>;
 
     //addDocument: (url: string, path: string) => Promise<any>
 }
