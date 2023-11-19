@@ -7,7 +7,6 @@ import { apiStoreCategories } from "../../../../store";
 import { toJS } from "mobx";
 
 interface MobileMenuProps {
-    categories: any[];
     open: boolean;
     onClose: () => void;
 }

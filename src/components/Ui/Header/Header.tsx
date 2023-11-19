@@ -5,7 +5,7 @@ import MobileMenu from "./MobileMenu/MobileMenu";
 import styles from "./Header.module.css";
 
 
-const Header: FC<any> = ({ categories }) => {
+const Header: FC<any> = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
@@ -45,7 +45,6 @@ const Header: FC<any> = ({ categories }) => {
         </div>
 
         <MobileMenu
-            categories={categories}
             open={mobileMenuOpen}
             onClose={() => setMobileMenuOpen(false)}
         />
