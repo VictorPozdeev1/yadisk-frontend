@@ -1,15 +1,11 @@
 import { render, screen } from '@testing-library/react'
 import { BrowserRouter } from 'react-router-dom'
-import Spinner from './Spinner'
+import Footer from './Footer'
 
-test('Spinner component', () => {
+test('Footer component', () => {
     render(
         <BrowserRouter>
-            <Spinner
-            />
+            <Footer />
         </BrowserRouter>
     )
-
-    expect(screen.getByText('Loading...')).toBeInTheDocument();
-
 })
