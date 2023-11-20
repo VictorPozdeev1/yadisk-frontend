@@ -40,7 +40,7 @@ const Header: FC<any> = () => {
           </div>
 
           <IconButton onClick={() => setMobileMenuOpen(true)}>
-            <MenuIcon />
+            <MenuIcon color="secondary"/>
           </IconButton>
         </div>
 

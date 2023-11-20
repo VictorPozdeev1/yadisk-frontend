@@ -66,13 +66,13 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ open, onClose }) => {
                     flexDirection: "column",
                     alignItems: "center",
                     justifyContent: "start",
-                    height: "80vh",
-                    width:"75vw",
+                    height: "100vh",
+                    width:"320px",
                 }}
                 onClick={onClose}
             >  
                 <IconButton onClick={onClose} sx={{margin:'1em 1em 1em auto'}}>
-                    <MenuOpenIcon />
+                    <MenuOpenIcon color="secondary"/>
                 </IconButton>
                 <div style={{
                     
