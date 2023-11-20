@@ -20,7 +20,7 @@ const Sidebar: FC<any> = () => {
             <div
                 key={item.resource_id}
                 style={{
-                    padding: "12px 24px 12px 24px",
+                    
                     width: "90%",
                     backgroundColor: selectedCategory === item.name ? "#ffffff" : "transparent",
                     borderRadius: selectedCategory === item.name ? "7px" : "transparent",
@@ -30,6 +30,9 @@ const Sidebar: FC<any> = () => {
                     key={item.resource_id}
                     to={`/${item.name}`}
                     style={{
+                        padding: "12px 24px 12px 24px",
+                        width: "100%",
+                        display: "block",
                         textDecoration: "none",
                         color: selectedCategory === item.name ? "#035FA2" : "#333",
                         cursor: "pointer",
@@ -64,7 +67,7 @@ const Sidebar: FC<any> = () => {
             </div>
 
             <div data-testid={'toggle-el'} style={{
-                padding: "12px 24px 12px 24px",
+                
                 width: "90%",
                 backgroundColor: selectedCategory === null ? "#ffffff" : "transparent",
                 borderRadius: selectedCategory === null ? "7px" : "transparent",
@@ -74,6 +77,9 @@ const Sidebar: FC<any> = () => {
                     to={"/"}
                     onClick={() => setSelectedCategory(null)}
                     style={{
+                        padding: "12px 24px 12px 24px",
+                        width: "100%",
+                        display: "block",
                         textDecoration: "none",
                         color: selectedCategory === null ? "#035FA2" : "#333",
                         cursor: "pointer",
@@ -87,7 +93,7 @@ const Sidebar: FC<any> = () => {
 
 
 
-            <Fab
+            {/* <Fab
                 variant="extended"
                 sx={{
                     marginTop: "auto",
@@ -113,7 +119,7 @@ const Sidebar: FC<any> = () => {
             >
                 Документ
                 <AddIcon />
-            </Fab>
+            </Fab> */}
 
         </div>
     );
