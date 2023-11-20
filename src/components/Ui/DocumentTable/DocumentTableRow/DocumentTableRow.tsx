@@ -54,7 +54,7 @@ export const DocumentTableRow: FC<DocumentTableRowProps> = ({
       {item.name}
     </MenuItem>
   ));
-  console.log(document);
+  //console.log(document);
   return (
     <TableRow
       sx={{
@@ -76,7 +76,7 @@ export const DocumentTableRow: FC<DocumentTableRowProps> = ({
             color="secondary"
             onClick={(e) => {
               onView && onView({ documentID });
-              console.log("view", { documentID });
+              //console.log("view", { documentID });
             }}
           >
             <FileOpenOutlinedIcon sx={isMobile ? smallIconStyle : {}} />
