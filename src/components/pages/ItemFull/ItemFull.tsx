@@ -43,7 +43,14 @@ const ItemFull: FC = () => {
   return (
     <Dialog
       open={true}
-      onClose={() => { history.back() }} // eslint-disable-line
+      onClose={() => {
+        /* eslint-disable */
+        if (history.length > 2)
+          history.back();
+        else
+          location.href = location.origin;
+        /* eslint-enable */
+      }}
       PaperProps={{ sx: { m: 0 } }}
     >
       <Box
