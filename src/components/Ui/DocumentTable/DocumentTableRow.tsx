@@ -17,7 +17,9 @@ import { apiStoreCategories } from "../../../store";
 import { toJS } from "mobx";
 import { Theme } from "@mui/system";
 import { Link } from "react-router-dom";
-import { deleteDocument, switchCategory } from "../../../data/api/request";
+import YandexDiskAPI from "../../../data/api/request";
+
+const { deleteDocument, switchCategory } = YandexDiskAPI;
 export interface DocumentTableRowProps extends TableRowProps {
   document?: Document;
   categoryList?: Category[]; //пока не исползуется, берём из mobx

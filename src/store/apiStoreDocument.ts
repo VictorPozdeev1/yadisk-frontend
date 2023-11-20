@@ -6,8 +6,11 @@ import {
   observable,
   action,
 } from "mobx";
-import { getDocumentsByCategory, getDocuments, deleteDocument, switchCategory } from "../data/api/request";
+import YandexDiskAPI from "../data/api/request";
+
 import Document from "../data/contracts/Document";
+const { getDocumentsByCategory, getDocuments, deleteDocument, switchCategory } =
+  YandexDiskAPI;
 
 class ApiStoreDocument {
   documents: Array<Document> = [];
@@ -19,7 +22,7 @@ class ApiStoreDocument {
     });
   }
 
-  async delDoc(path:string){
+  async delDoc(path: string) {
     deleteDocument(path);
     const documents = (await getDocuments()) as Document[];
     runInAction(() => {
@@ -27,8 +30,8 @@ class ApiStoreDocument {
     });
   }
 
-  async switchCat(from:string, categoy:string, fileName:string){
-    switchCategory(from,categoy,fileName);
+  async switchCat(from: string, categoy: string, fileName: string) {
+    switchCategory(from, categoy, fileName);
     const documents = (await getDocuments()) as Document[];
     runInAction(() => {
       this.documents = documents;
@@ -39,8 +42,8 @@ class ApiStoreDocument {
     makeObservable(this, {
       documents: observable,
       loadDocuments: action,
-      delDoc:action,
-      switchCat: action
+      delDoc: action,
+      switchCat: action,
     });
   }
 }

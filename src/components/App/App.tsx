@@ -15,17 +15,17 @@ import ItemsList from "../pages/ItemsList/ItemsList";
 import Category from "../pages/Category/Category";
 import { toJS } from "mobx";
 
-import {
-  getCategories,
-  getDocumentsByCategory,
-  getDocuments,
-} from "../../data/api/request";
+// import {
+//   getCategories,
+//   getDocumentsByCategory,
+//   getDocuments,
+// } from "../../data/api/request";
 import { Outlet } from "react-router";
 import { Main } from "../Ui/Main/Main";
 import { appTheme } from "../theme/theme";
 import { DocumentTable } from "../Ui/DocumentTable/DocumentTable";
 
-import { deleteDocument, switchCategory } from "../../data/api/request";
+// import { deleteDocument, switchCategory } from "../../data/api/request";
 
 function App() {
   // Получение категорий
