@@ -1,30 +1,25 @@
 import { runInAction, action, makeObservable, observable } from "mobx";
-import { getCategories } from "../data/api/request";
+import YandexDiskAPI from "../data/api/request";
 import Category from "../data/contracts/Category";
 
+const { getCategories } = YandexDiskAPI;
+
 class ApiStoreCategories {
-    categories: Array<Category> = [];
+  categories: Array<Category> = [];
 
-    async loadCategories() {
-        const categories = await getCategories() as Category[];
-        runInAction(() => {
-            this.categories = categories;
-        })
+  async loadCategories() {
+    const categories = (await getCategories()) as Category[];
+    runInAction(() => {
+      this.categories = categories;
+    });
+  }
 
-
-    }
-
-
-
-    constructor() {
-
-        makeObservable(this, {
-            categories: observable,
-            loadCategories: action
-        });
-    }
-
-
+  constructor() {
+    makeObservable(this, {
+      categories: observable,
+      loadCategories: action,
+    });
+  }
 }
 
-export default ApiStoreCategories
+export default ApiStoreCategories;

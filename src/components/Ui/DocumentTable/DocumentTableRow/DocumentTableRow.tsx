@@ -17,7 +17,10 @@ import { apiStoreCategories } from "../../../../store";
 import { toJS } from "mobx";
 import { Theme } from "@mui/system";
 import { Link } from "react-router-dom";
-import { deleteDocument, switchCategory } from "../../../../data/api/request";
+import YandexDiskAPI from "../../../../data/api/request";
+
+const { deleteDocument, switchCategory } = YandexDiskAPI;
+
 export interface DocumentTableRowProps extends TableRowProps {
   document?: Document;
   categoryList?: Category[]; //пока не исползуется, берём из mobx
@@ -55,18 +58,20 @@ export const DocumentTableRow: FC<DocumentTableRowProps> = ({
   return (
     <TableRow
       sx={{
-        display: 'grid',
-        gridAutoFlow: 'column',
-        gridTemplateColumns: 'min-content minmax(0,1fr) auto min-content',
-        gridTemplateRows: 'min-content',
-        gridAutoRows: 'min-content',
-        alignItems: 'baseline',
-
-      }}>
+        display: "grid",
+        gridAutoFlow: "column",
+        gridTemplateColumns: "min-content minmax(0,1fr) auto min-content",
+        gridTemplateRows: "min-content",
+        gridAutoRows: "min-content",
+        alignItems: "baseline",
+      }}
+    >
       {/* view document button */}
-      <TableCell
-      >
-        <Link title={'смотреть документ'} to={`/${document?.category}/${document?.resource_id}`}>
+      <TableCell>
+        <Link
+          title={"смотреть документ"}
+          to={`/${document?.category}/${document?.resource_id}`}
+        >
           <IconButton
             color="secondary"
             onClick={(e) => {
@@ -81,9 +86,9 @@ export const DocumentTableRow: FC<DocumentTableRowProps> = ({
       {/* document name */}
       <TableCell
         sx={{
-          display: 'flex',
-          height: '100%',
-          margin: 'auto 0',
+          display: "flex",
+          height: "100%",
+          margin: "auto 0",
         }}
       >
         <Typography
@@ -91,11 +96,11 @@ export const DocumentTableRow: FC<DocumentTableRowProps> = ({
           // component="p"
           noWrap={false}
           sx={{
-            overflow: 'hidden',
-            whiteSpace: 'nowrap',
-            textOverflow: 'ellipsis',
+            overflow: "hidden",
+            whiteSpace: "nowrap",
+            textOverflow: "ellipsis",
             fontSize: isMobile ? 12 : 16,
-            margin: 'auto 0',
+            margin: "auto 0",
           }}
           title={document?.name}
         >
@@ -106,10 +111,11 @@ export const DocumentTableRow: FC<DocumentTableRowProps> = ({
       <TableCell
         align="right"
         sx={{
-          display: 'flex',
-          height: '100%',
-          margin: 'auto 0',
-        }}>
+          display: "flex",
+          height: "100%",
+          margin: "auto 0",
+        }}
+      >
         <Select
           title="сменить категорию"
           variant="standard"
@@ -143,7 +149,7 @@ export const DocumentTableRow: FC<DocumentTableRowProps> = ({
         </Select>
       </TableCell>
 
-      <TableCell >
+      <TableCell>
         <IconButton
           title="удалить документ"
           color="secondary"
