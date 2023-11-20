@@ -23,15 +23,15 @@ class ApiStoreDocument {
   }
 
   async delDoc(path: string) {
-    deleteDocument(path);
+    await deleteDocument(path);
     const documents = (await getDocuments()) as Document[];
     runInAction(() => {
       this.documents = documents;
     });
   }
 
-  async switchCat(from: string, categoy: string, fileName: string) {
-    switchCategory(from, categoy, fileName);
+  async switchCat(from: string, category: string, fileName: string) {
+    await switchCategory(from, category, fileName);
     const documents = (await getDocuments()) as Document[];
     runInAction(() => {
       this.documents = documents;
