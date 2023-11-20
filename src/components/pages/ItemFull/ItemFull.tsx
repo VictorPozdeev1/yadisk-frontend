@@ -18,24 +18,24 @@ const ItemFull: FC = () => {
     ?.sizes?.[0]
     ?.url;
 
-  const bookRatio: number = 0.7;
-  const [limitedByWidth, setLimitedByWidth] = React.useState<boolean>(window.innerWidth / window.innerHeight < bookRatio);
-  useEffect(() => {
-    function handleResize() {
-      const newLimitedByWidth = window.innerWidth / window.innerHeight < bookRatio;
-      //if (limitedByWidth != newLimitedByWidth)
-      setLimitedByWidth(newLimitedByWidth);
-    }
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
+  // const bookRatio: number = 0.7;
+  // const [limitedByWidth, setLimitedByWidth] = React.useState<boolean>(window.innerWidth / window.innerHeight < bookRatio);
+  // useEffect(() => {
+  //   function handleResize() {
+  //     const newLimitedByWidth = window.innerWidth / window.innerHeight < bookRatio;
+  //     //if (limitedByWidth != newLimitedByWidth)
+  //     setLimitedByWidth(newLimitedByWidth);
+  //   }
+  //   window.addEventListener('resize', handleResize);
+  //   return () => {
+  //     window.removeEventListener('resize', handleResize);
+  //   };
+  // }, []);
 
-  const percentsToTake = 90;
-  const boxSize: { width: string, height: string } = limitedByWidth
-    ? { width: `${percentsToTake}vw`, height: `${(percentsToTake / bookRatio).toFixed(0)}vw` }
-    : { width: `${(percentsToTake * bookRatio).toFixed(0)}vh`, height: `${percentsToTake}vh` }
+  // const percentsToTake = 90;
+  // const boxSize: { width: string, height: string } = limitedByWidth
+  //   ? { width: `${percentsToTake}vw`, height: `${(percentsToTake / bookRatio).toFixed(0)}vw` }
+  //   : { width: `${(percentsToTake * bookRatio).toFixed(0)}vh`, height: `${percentsToTake}vh` }
 
   if (!document)
     return <Spinner />;
@@ -51,31 +51,21 @@ const ItemFull: FC = () => {
           location.href = location.origin;
         /* eslint-enable */
       }}
-      PaperProps={{ sx: { m: 0 } }}
+      scroll="body"
+      maxWidth={'laptop'}
+
     >
-      {/* <Box
-        sx={{
-          backgroundImage: `url(${fullImageUrl})`,
-          backgroundSize: 'contain',
-          backgroundRepeat: 'no-repeat',
-          backgroundPosition: 'center',
-          ...boxSize
-        }}
-      >
-        {fullImageUrl ? (
-          null
-        ) : (
-          < Typography variant="h4">
-            {`Image url not found :( (${document?.sizes?.map(s => s.url)})`}
-          </Typography>
-        )
-        }
-      </Box> */}
-      <Box sx={boxSize}>
+      <Box >
         {fullImageUrl ?
           <img
             src={fullImageUrl}
-            style={{ objectFit: 'contain', width: '100%', height: '100%', display: 'block' }}
+            style={{
+              objectFit: 'contain',
+              width: '100%',
+              height: '100%',
+              display: 'block'
+            }}
+            alt={document.name}
           />
           :
           < Typography variant="h4">
