@@ -5,22 +5,18 @@ import Category from "../data/contracts/Category";
 class ApiStoreCategories {
     categories: Array<Category> = [];
 
-    async loadCategories() {
+    async load() {
         const categories = await getCategories() as Category[];
         runInAction(() => {
             this.categories = categories;
         })
 
-
     }
 
-
-
     constructor() {
-
         makeObservable(this, {
             categories: observable,
-            loadCategories: action
+            load: action
         });
     }
 

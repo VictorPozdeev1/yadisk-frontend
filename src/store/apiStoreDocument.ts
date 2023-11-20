@@ -12,14 +12,14 @@ import Document from "../data/contracts/Document";
 class ApiStoreDocument {
   documents: Array<Document> = [];
 
-  async loadDocuments() {
+  async load() {
     const documents = (await getDocuments()) as Document[];
     runInAction(() => {
       this.documents = documents;
     });
   }
 
-  async delDoc(path:string){
+  async delete(path:string){
     deleteDocument(path);
     const documents = (await getDocuments()) as Document[];
     runInAction(() => {
@@ -27,8 +27,8 @@ class ApiStoreDocument {
     });
   }
 
-  async switchCat(from:string, categoy:string, fileName:string){
-    switchCategory(from,categoy,fileName);
+  async switchCategory(from:string, category:string, fileName:string){
+    switchCategory(from,category,fileName);
     const documents = (await getDocuments()) as Document[];
     runInAction(() => {
       this.documents = documents;
@@ -38,9 +38,9 @@ class ApiStoreDocument {
   constructor() {
     makeObservable(this, {
       documents: observable,
-      loadDocuments: action,
-      delDoc:action,
-      switchCat: action
+      load: action,
+      delete:action,
+      switchCategory: action
     });
   }
 }

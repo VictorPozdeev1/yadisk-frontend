@@ -30,47 +30,34 @@ import { deleteDocument, switchCategory } from "../../data/api/request";
 function App() {
   // Получение категорий
   useEffect(() => {
-    apiStoreCategories.loadCategories().then(() => {
-      apiStoreDocuments.loadDocuments();
+    apiStoreCategories.load().then(() => {
+      apiStoreDocuments.load();
       //apiStoreDocuments.switchCat("disk:/CaseLabDocuments/Бухгалтерия/turtle.png","Университет","turtle.png"); - смена категорий
       //apiStoreDocuments.delDoc("disk:/CaseLabDocuments/Бухгалтерия/turtle.png") - удаление документа
     });
   }, []);
 
-  // useless
-  // const onSwitchFullItem = (url: string, name: string) => {
-  //   return <Item url={url} name={name} />;
-  // };
-
-  // useless
-  // const onGetFullImg = (id: string) => {
-  //   console.log(id);
-  //   console.log(toJS(apiStoreDocuments.documents));
-  //   return toJS(apiStoreDocuments.documents).filter(
-  //     (el) => el.resource_id === id
-  //   )[0].sizes[0].url;
-  // };
 
   const documents = toJS(apiStoreDocuments.documents);
-  const ItemsListContent = !documents ? (
-    <div>Nothing</div>
-  ) : (
-    documents.map((el) => {
-      // console.log(el);
-      return (
-        <Item
-          src={el.preview}
-          name={el.name}
-          key={el.resource_id}
-          id={el.resource_id}
-          url={el.file}
-          category={el.category}
+  // const ItemsListContent = !documents ? (
+  //   <div>Nothing</div>
+  // ) : (
+  //   documents.map((el) => {
+  //     // console.log(el);
+  //     return (
+  //       <Item
+  //         src={el.preview}
+  //         name={el.name}
+  //         key={el.resource_id}
+  //         id={el.resource_id}
+  //         url={el.file}
+  //         category={el.category}
 
-          // onClick={onSwitchFullItem}
-        />
-      );
-    })
-  );
+  //         // onClick={onSwitchFullItem}
+  //       />
+  //     );
+  //   })
+  // );
 
   return (
     <AppRouter

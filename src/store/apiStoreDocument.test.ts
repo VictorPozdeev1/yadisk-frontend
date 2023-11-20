@@ -24,7 +24,7 @@ describe("ApiStoreCategories", () => {
 
         const apiStore = new ApiStoreCategories();
 
-        await apiStore.loadCategories();
+        await apiStore.load();
 
         expect(getCategories).toHaveBeenCalled();
         expect(apiStore.categories).toEqual(mockCategories);

@@ -13,7 +13,7 @@ describe("ApiStoreCategories", () => {
 
         const apiStoreCategories = new ApiStoreCategories();
 
-        await apiStoreCategories.loadCategories();
+        await apiStoreCategories.load();
 
         expect(apiStoreCategories.categories).toEqual(mockCategories);
     });

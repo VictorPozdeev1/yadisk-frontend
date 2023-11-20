@@ -100,17 +100,17 @@ export const deleteDocument = async (path:string) => {
   }
 };
 
-export const switchCategory = async (from:string, categoy:string, fileName:string) =>{
+export const switchCategory = async (from:string, category:string, fileName:string) =>{
   try{
-    
+
     const response = await axios.post(
       `${BASE_URL}/move`,
-      null, 
+      null,
       {headers:{
-        'Authorization': token, 
+        'Authorization': token,
       },params:{
         from:from,
-        path:`${CATEGORIES_URL}/${categoy}/${fileName}`
+        path:`${CATEGORIES_URL}/${category}/${fileName}`
       }});
     //getDocuments();
     return response
@@ -131,7 +131,7 @@ export const switchCategory = async (from:string, categoy:string, fileName:strin
 //         headers:{
 //           Authorization: `${token}`,
 //         }
-        
+
 //       }
 //     )
 //     return response
@@ -139,4 +139,3 @@ export const switchCategory = async (from:string, categoy:string, fileName:strin
 //     console.log(err)
 //   }
 // }
-

@@ -33,6 +33,7 @@ export const DocumentTableRow: FC<DocumentTableRowProps> = ({
   onDelete,
 }) => {
   const [documentID, setDocumentID] = useState(document?.resource_id);
+  const [category, setCategory] = useState(document?.category)
   const isMobile = useMediaQuery((theme: Theme) =>
     theme.breakpoints.down("tablet")
   );
@@ -42,16 +43,18 @@ export const DocumentTableRow: FC<DocumentTableRowProps> = ({
   };
   const categoryMenu = (
     categoryList ?? toJS<Category[]>(apiStoreCategories.categories)
-  )?.map((item: Category, idx) => (
+  )?.map((category: Category, idx) => (
     <MenuItem
-      // key={`${idx}_${item.resource_id.slice(-3)}`} value={item.resource_id}
-      key={`${idx}${document ? document.resource_id : null}`}
-      sx={isMobile ? { fontSize: 12 } : { fontSize: 16 }}
+      key={`${idx}${category?.resource_id?.slice(-3)}`}
+      value={category.name}
+      // disabled={document?.category === category.name}
+      // key={`${idx}${document ? document.resource_id : null}`}
+      sx={{ fontSize: isMobile ? 12 : 16 }}
     >
-      {item.name}
+      {category.name}
     </MenuItem>
   ));
-  console.log(document);
+  // console.log(document);
   return (
     <TableRow
       sx={{
@@ -113,32 +116,32 @@ export const DocumentTableRow: FC<DocumentTableRowProps> = ({
         <Select
           title="сменить категорию"
           variant="standard"
-          value={document?.categoryId ?? "-1"}
+          value={category ?? "-1"}
           sx={{
             fontSize: isMobile ? 12 : 16,
             display: "flex",
-            // maxWidth: '100px',
           }}
           onChange={(e) => {
             onCategoryChange &&
               onCategoryChange({
-                newCategoryID: e.target.value,
-                documentID,
+                newCategory: e.target.value,
+                document,
               });
+            setCategory(e.target.value);
             console.log("change category", {
               newCategoryID: e.target.value,
-              documentID,
+              document,
             });
           }}
         >
-          <MenuItem
+          {/* <MenuItem
             disabled
             key={"-1"}
             value={"-1"}
             sx={isMobile ? { fontSize: 12 } : { fontSize: 16 }}
           >
             {"не задана категория"}
-          </MenuItem>
+          </MenuItem> */}
           {categoryMenu}
         </Select>
       </TableCell>
