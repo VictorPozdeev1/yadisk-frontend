@@ -53,7 +53,7 @@ const ItemFull: FC = () => {
       }}
       PaperProps={{ sx: { m: 0 } }}
     >
-      <Box
+      {/* <Box
         sx={{
           backgroundImage: `url(${fullImageUrl})`,
           backgroundSize: 'contain',
@@ -66,9 +66,21 @@ const ItemFull: FC = () => {
           null
         ) : (
           < Typography variant="h4">
-            {'Image url not found :('}
+            {`Image url not found :( (${document?.sizes?.map(s => s.url)})`}
           </Typography>
         )
+        }
+      </Box> */}
+      <Box sx={boxSize}>
+        {fullImageUrl ?
+          <img
+            src={fullImageUrl}
+            style={{ objectFit: 'contain', width: '100%', height: '100%', display: 'block' }}
+          />
+          :
+          < Typography variant="h4">
+            {`Image url not found :( (${document?.sizes?.map(s => s.url)})`}
+          </Typography>
         }
       </Box>
     </Dialog >
