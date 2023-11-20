@@ -1,7 +1,9 @@
 import React, { FC, useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import { getDocuments } from "../../../data/api/request";
+import YandexDiskAPI from "../../../data/api/request";
 import Spinner from "../../Ui/Spinner/Spinner";
+
+const { getDocuments } = YandexDiskAPI;
 
 const ItemFull: FC = () => {
   const [itemFullImageUrl, setItemFullImageUrl] = useState<string>("");

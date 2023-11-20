@@ -1,20 +1,25 @@
 import ApiStoreCategories from "./apiStoreCategories";
-import * as apiRequest from "../data/api/request";
+import YandexDiskAPI from "../data/api/request";
 
 jest.mock("../data/api/request", () => ({
-    getCategories: jest.fn()
+  getCategories: jest.fn(),
 }));
 
 describe("ApiStoreCategories", () => {
-    it("should load categories correctly", async () => {
-        const mockCategories = [{ id: 1, name: "Category 1" }, { id: 2, name: "Category 2" }];
+  it("should load categories correctly", async () => {
+    const mockCategories = [
+      { id: 1, name: "Category 1" },
+      { id: 2, name: "Category 2" },
+    ];
 
-        (apiRequest.getCategories as jest.Mock).mockResolvedValueOnce(mockCategories);
+    (YandexDiskAPI.getCategories as jest.Mock).mockResolvedValueOnce(
+      mockCategories
+    );
 
-        const apiStoreCategories = new ApiStoreCategories();
+    const apiStoreCategories = new ApiStoreCategories();
 
-        await apiStoreCategories.loadCategories();
+    await apiStoreCategories.loadCategories();
 
-        expect(apiStoreCategories.categories).toEqual(mockCategories);
-    });
+    expect(apiStoreCategories.categories).toEqual(mockCategories);
+  });
 });
