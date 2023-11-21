@@ -4,7 +4,7 @@ export default interface Document {
   categoryId?: string; // Идентификатор категории, к которой документ принадлежит
   file: string; // URL изображения документа (png)
   preview: string; // URL минифицированной версии изображения документа (png)
-  sizes: any[];
+  sizes: Array<{ url: string }>;
   category: string;
   path: string;
 }
