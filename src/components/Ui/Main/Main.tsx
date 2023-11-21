@@ -4,6 +4,7 @@ import { DocumentTable } from "../DocumentTable/DocumentTable";
 import Box from "@mui/material/Box";
 import { Grid, Typography, useMediaQuery } from "@mui/material";
 import { Theme, fontSize } from "@mui/system";
+import { useParams } from "react-router-dom";
 
 export interface MainProps {
   title?: string;
@@ -12,6 +13,8 @@ export const Main: FC<PropsWithChildren<MainProps>> = ({ title }) => {
   const isDesktop = useMediaQuery((theme: Theme) =>
     theme.breakpoints.up("tablet")
   );
+
+  const { category } = useParams();
 
   return (
     <Grid
@@ -34,7 +37,7 @@ export const Main: FC<PropsWithChildren<MainProps>> = ({ title }) => {
               : {}
           }
         >
-          {/* {title ? title : "Все категории"} */}
+          {category ?? "Все документы"}
         </Typography>
       </Grid>
       <Grid item>
