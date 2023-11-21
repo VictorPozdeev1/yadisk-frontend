@@ -33,6 +33,7 @@ export const DocumentTableRow: FC<DocumentTableRowProps> = ({
     width: 20,
     height: 20,
   };
+
   const categoryMenu = toJS<Category[]>(apiStoreCategories.categories)?.map(
     (item: Category, idx) => (
       <MenuItem
@@ -44,7 +45,7 @@ export const DocumentTableRow: FC<DocumentTableRowProps> = ({
       </MenuItem>
     )
   );
-  console.log(document);
+  //console.log(document);
   return (
     <TableRow
       sx={{
@@ -66,6 +67,7 @@ export const DocumentTableRow: FC<DocumentTableRowProps> = ({
             color="secondary"
             onClick={(e) => {
               onView && onView(document?.resource_id);
+
             }}
           >
             <FileOpenOutlinedIcon sx={isMobile ? smallIconStyle : {}} />
