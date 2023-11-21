@@ -1,10 +1,17 @@
 import { FC } from "react";
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
 
 const Spinner: FC = () => {
   return (
-    <div>
-      <span>Loading...</span>
-    </div>
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+      }}
+    >
+      <CircularProgress />
+    </Box>
   );
 };
 
