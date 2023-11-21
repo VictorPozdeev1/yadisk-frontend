@@ -1,54 +1,58 @@
 import React, { FC, useState } from "react";
-import { IconButton } from "@mui/material";
+import { IconButton, } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import MobileMenu from "./MobileMenu/MobileMenu";
-import styles from "./Header.module.css";
+import { Logo } from "../Logo/Logo";
 
+export interface HeaderProps {
 
-const Header: FC<any> = () => {
+}
+const Header: FC<HeaderProps> = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
   return (
-      <div
-          data-testid="header_test"
-          style={{
-            height: "100%",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            textAlign: "left",
-            position: "relative",
-          }}
-      >
+    <div
+      data-testid="header_test"
+      style={{
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        textAlign: "left",
+        position: "relative",
+      }}
+    >
 
+      <div style={{
+        display: "flex",
+        alignItems: "center",
+        width: "100%",
+        padding: '12px 0',
+      }}>
+        {/* logo-wrapper */}
         <div style={{
           display: "flex",
-          justifyContent: "space-between",
+          flex: '1',
+          justifyContent: "center",
           alignItems: "center",
-          width: "100%",
-          marginTop: "1em"
+          marginRight: '-48px',
         }}>
 
-          <div style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            width: "100%",
-            marginTop: "1em"
-          }}>
-            <img src="/images/logo.png" alt="Росатом" className={styles.logoImage} style={{margin: "0 auto"}}/>
-          </div>
-
-          <IconButton onClick={() => setMobileMenuOpen(true)}>
-            <MenuIcon color="secondary"/>
-          </IconButton>
+          <Logo variant={'small'} />
         </div>
 
-        <MobileMenu
-            open={mobileMenuOpen}
-            onClose={() => setMobileMenuOpen(false)}
-        />
+        <IconButton onClick={() => setMobileMenuOpen(true)}>
+          <MenuIcon sx={{
+            width: 32,
+            height: 32,
+          }} color="secondary" />
+        </IconButton>
       </div>
+
+      <MobileMenu
+        open={mobileMenuOpen}
+        onClose={() => setMobileMenuOpen(false)}
+      />
+    </div>
   );
 }
 

@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import Header from "../Ui/Header/Header";
-import Footer from "../Ui/Footer/Footer";
 import Layout from "../Ui/Layout/Layout";
 import Sidebar from "../Ui/Sidebar/Sidebar";
 import AppRouter from "../AppRouter";
@@ -31,8 +30,7 @@ function App() {
           header={<Header />}
           main={<Main />}
           theme={appTheme}
-          footer={<Footer />}
-          sidebar={<Sidebar categories={toJS(apiStoreCategories.categories)} />}
+          sidebar={<Sidebar />}
         />
       }
       Category={<Category items={documents} />}
