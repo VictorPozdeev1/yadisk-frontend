@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Drawer, Fab, IconButton, useMediaQuery } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import {Link, NavLink} from "react-router-dom";
@@ -15,7 +15,14 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ open, onClose }) => {
     const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
     
     const categories = toJS(apiStoreCategories.categories);
-    
+
+    useEffect(()=>{
+        if(selectedCategory){
+            document.title = `${selectedCategory}`
+        } else {
+            document.title = 'Все документы'
+        } 
+    }, [selectedCategory])
     
     const content = categories ? (
 

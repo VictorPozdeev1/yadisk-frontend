@@ -13,6 +13,14 @@ const Sidebar: FC<any> = () => {
 
     const categories = toJS(apiStoreCategories.categories);
 
+    useEffect(()=>{
+        if(selectedCategory){
+            document.title = `${selectedCategory}`
+        } else {
+            document.title = 'Все документы'
+        } 
+    }, [selectedCategory])
+
     const content = categories ? (
 
         categories.map((item: any) => (
