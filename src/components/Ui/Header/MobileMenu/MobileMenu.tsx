@@ -15,7 +15,14 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ open, onClose }) => {
     const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
     
     const categories = toJS(apiStoreCategories.categories);
-    
+
+    useEffect(()=>{
+        if(selectedCategory){
+            document.title = `${selectedCategory}`
+        } else {
+            document.title = 'Все документы'
+        } 
+    })
     
     const content = categories ? (
 
