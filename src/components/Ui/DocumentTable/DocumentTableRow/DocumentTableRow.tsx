@@ -142,6 +142,9 @@ export const DocumentTableRow: FC<DocumentTableRowProps> = ({
                 title: "Вы уверены?",
                 confirmationText: "Удалить",
                 cancellationText: "Отмена",
+                dialogProps: {
+                  fullWidth: false,
+                },
               })
                 .then(() => apiStoreDocuments.delDoc(document?.path))
                 .catch(() => console.log("Deletion cancelled."));
