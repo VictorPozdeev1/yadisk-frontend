@@ -32,7 +32,7 @@ function App() {
           main={<Main />}
           theme={appTheme}
           footer={<Footer />}
-          sidebar={<Sidebar categories={toJS(apiStoreCategories.categories)} />}
+          sidebar={<Sidebar />}
         />
       }
       Category={<Category items={documents} />}
