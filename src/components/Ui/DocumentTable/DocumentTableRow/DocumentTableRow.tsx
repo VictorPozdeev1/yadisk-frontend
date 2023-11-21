@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 import Document from "../../../../data/contracts/Document";
 import Category from "../../../../data/contracts/Category";
 import {
@@ -13,29 +13,19 @@ import {
 } from "@mui/material";
 import FileOpenOutlinedIcon from "@mui/icons-material/FileOpenOutlined";
 import DeleteForeverRoundedIcon from "@mui/icons-material/DeleteForeverRounded";
-import { apiStoreCategories } from "../../../../store";
+import { apiStoreCategories, apiStoreDocuments } from "../../../../store";
 import { toJS } from "mobx";
 import { Theme } from "@mui/system";
 import { Link } from "react-router-dom";
-import YandexDiskAPI from "../../../../data/api/request";
-
-const { deleteDocument, switchCategory } = YandexDiskAPI;
 
 export interface DocumentTableRowProps extends TableRowProps {
   document?: Document;
-  categoryList?: Category[]; //пока не исползуется, берём из mobx
-  onDelete?: (arg: unknown) => void;
-  onCategoryChange?: (arg: unknown) => void;
   onView?: (arg: unknown) => void;
 }
 export const DocumentTableRow: FC<DocumentTableRowProps> = ({
   document,
-  categoryList, //
   onView,
-  onCategoryChange,
-  onDelete,
 }) => {
-  const [documentID, setDocumentID] = useState(document?.resource_id);
   const isMobile = useMediaQuery((theme: Theme) =>
     theme.breakpoints.down("tablet")
   );
@@ -43,17 +33,18 @@ export const DocumentTableRow: FC<DocumentTableRowProps> = ({
     width: 20,
     height: 20,
   };
-  const categoryMenu = (
-    categoryList ?? toJS<Category[]>(apiStoreCategories.categories)
-  )?.map((item: Category, idx) => (
-    <MenuItem
-      // key={`${idx}_${item.resource_id.slice(-3)}`} value={item.resource_id}
-      key={`${idx}${document ? document.resource_id : null}`}
-      sx={isMobile ? { fontSize: 12 } : { fontSize: 16 }}
-    >
-      {item.name}
-    </MenuItem>
-  ));
+
+  const categoryMenu = toJS<Category[]>(apiStoreCategories.categories)?.map(
+    (item: Category, idx) => (
+      <MenuItem
+        key={`${idx}_${item.resource_id.slice(-3)}`}
+        value={item.name}
+        sx={isMobile ? { fontSize: 12 } : { fontSize: 16 }}
+      >
+        {item.name}
+      </MenuItem>
+    )
+  );
   //console.log(document);
   return (
     <TableRow
@@ -75,8 +66,8 @@ export const DocumentTableRow: FC<DocumentTableRowProps> = ({
           <IconButton
             color="secondary"
             onClick={(e) => {
-              onView && onView({ documentID });
-              //console.log("view", { documentID });
+              onView && onView(document?.resource_id);
+
             }}
           >
             <FileOpenOutlinedIcon sx={isMobile ? smallIconStyle : {}} />
@@ -119,32 +110,22 @@ export const DocumentTableRow: FC<DocumentTableRowProps> = ({
         <Select
           title="сменить категорию"
           variant="standard"
-          value={document?.categoryId ?? "-1"}
+          value={document?.category}
           sx={{
             fontSize: isMobile ? 12 : 16,
             display: "flex",
             // maxWidth: '100px',
           }}
           onChange={(e) => {
-            onCategoryChange &&
-              onCategoryChange({
-                newCategoryID: e.target.value,
-                documentID,
-              });
-            console.log("change category", {
-              newCategoryID: e.target.value,
-              documentID,
-            });
+            if (document) {
+              apiStoreDocuments.switchCat(
+                document.path,
+                e.target.value,
+                document?.name
+              );
+            }
           }}
         >
-          <MenuItem
-            disabled
-            key={"-1"}
-            value={"-1"}
-            sx={isMobile ? { fontSize: 12 } : { fontSize: 16 }}
-          >
-            {"не задана категория"}
-          </MenuItem>
           {categoryMenu}
         </Select>
       </TableCell>
@@ -153,9 +134,10 @@ export const DocumentTableRow: FC<DocumentTableRowProps> = ({
         <IconButton
           title="удалить документ"
           color="secondary"
-          onClick={(e) => {
-            onDelete && onDelete({ documentID });
-            console.log("delete", { documentID });
+          onClick={() => {
+            if (document) {
+              apiStoreDocuments.delDoc(document?.path);
+            }
           }}
         >
           <DeleteForeverRoundedIcon sx={isMobile ? smallIconStyle : {}} />
