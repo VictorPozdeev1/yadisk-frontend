@@ -19,7 +19,7 @@ const Sidebar: FC<any> = () => {
         } else {
             document.title = 'Все документы'
         } 
-    })
+    }, [selectedCategory])
 
     const content = categories ? (
 

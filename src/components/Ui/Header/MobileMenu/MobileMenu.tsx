@@ -22,7 +22,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ open, onClose }) => {
         } else {
             document.title = 'Все документы'
         } 
-    })
+    }, [selectedCategory])
     
     const content = categories ? (
 
