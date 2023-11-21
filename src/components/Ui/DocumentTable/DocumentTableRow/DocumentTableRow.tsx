@@ -17,6 +17,7 @@ import { apiStoreCategories, apiStoreDocuments } from "../../../../store";
 import { toJS } from "mobx";
 import { Theme } from "@mui/system";
 import { Link } from "react-router-dom";
+import { useConfirm } from "material-ui-confirm";
 
 export interface DocumentTableRowProps extends TableRowProps {
   document?: Document;
@@ -26,6 +27,7 @@ export const DocumentTableRow: FC<DocumentTableRowProps> = ({
   document,
   onView,
 }) => {
+  const confirm = useConfirm();
   const isMobile = useMediaQuery((theme: Theme) =>
     theme.breakpoints.down("tablet")
   );
@@ -67,7 +69,6 @@ export const DocumentTableRow: FC<DocumentTableRowProps> = ({
             color="secondary"
             onClick={(e) => {
               onView && onView(document?.resource_id);
-
             }}
           >
             <FileOpenOutlinedIcon sx={isMobile ? smallIconStyle : {}} />
@@ -136,7 +137,17 @@ export const DocumentTableRow: FC<DocumentTableRowProps> = ({
           color="secondary"
           onClick={() => {
             if (document) {
-              apiStoreDocuments.delDoc(document?.path);
+              confirm({
+                description: `Это приведет к удалению файла ${document.name}`,
+                title: "Вы уверены?",
+                confirmationText: "Удалить",
+                cancellationText: "Отмена",
+                dialogProps: {
+                  fullWidth: false,
+                },
+              })
+                .then(() => apiStoreDocuments.delDoc(document?.path))
+                .catch(() => console.log("Deletion cancelled."));
             }
           }}
         >

@@ -3,23 +3,16 @@ import Document from "../../../data/contracts/Document";
 import {
   Table,
   TableBody,
-  TableCell,
   TableContainer,
   TableContainerProps,
-  TableHead,
-  TableRow,
-  Typography,
 } from "@mui/material";
 import {
   DocumentTableRow,
   DocumentTableRowProps,
 } from "./DocumentTableRow/DocumentTableRow";
-import {
-  DocumentTableHead,
-  DocumentTableHeadProps,
-} from "./DocumentTableHead/DocumentTableHead";
-import { useTheme } from "@mui/system";
-import Category from "../../../data/contracts/Category";
+import { DocumentTableHead } from "./DocumentTableHead/DocumentTableHead";
+import { ConfirmProvider } from "material-ui-confirm";
+
 export interface DocumentTableProps
   extends TableContainerProps,
     Pick<DocumentTableRowProps, "onView"> {
@@ -39,28 +32,30 @@ export const DocumentTable: FC<DocumentTableProps> = ({
     />
   ));
   return (
-    <TableContainer
-      sx={{
-        display: "flex",
-      }}
-    >
-      <Table
-        size="medium"
+    <ConfirmProvider>
+      <TableContainer
         sx={{
-          display: "grid",
-          flexDirection: "column",
+          display: "flex",
         }}
       >
-        <DocumentTableHead headerNames={headerNames} />
-        <TableBody
+        <Table
+          size="medium"
           sx={{
             display: "grid",
-            width: "100%",
+            flexDirection: "column",
           }}
         >
-          {tableRows ? tableRows : <span>нет элементов</span>}
-        </TableBody>
-      </Table>
-    </TableContainer>
+          <DocumentTableHead headerNames={headerNames} />
+          <TableBody
+            sx={{
+              display: "grid",
+              width: "100%",
+            }}
+          >
+            {tableRows ? tableRows : <span>нет элементов</span>}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </ConfirmProvider>
   );
 };
