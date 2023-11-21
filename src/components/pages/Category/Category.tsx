@@ -39,7 +39,7 @@ const Category: FC<any> = ({ items }) => {
     //     ))}
     // </div>
     <>
-      <h1 data-testid={'toggle-el'}>{`${category ?? "Все документы"}`}</h1>
+      <h1 data-testid={'test_title'}>{`${category ?? "Все документы"}`}</h1>
       <DocumentTable documentList={filterItems}></DocumentTable>
       {/* <ItemsList items={filterItems} category={category}></ItemsList> */}
     </>

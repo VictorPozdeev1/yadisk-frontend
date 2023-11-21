@@ -28,13 +28,13 @@ export const Main: FC<PropsWithChildren<MainProps>> = ({ title }) => {
           sx={
             !isDesktop
               ? {
-                  fontSize: 28,
-                  textAlign: "center",
-                }
+                fontSize: 28,
+                textAlign: "center",
+              }
               : {}
           }
         >
-          {/* {title ? title : "Все категории"} */}
+          {title ? title : "Все категории"}
         </Typography>
       </Grid>
       <Grid item>

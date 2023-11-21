@@ -1,4 +1,4 @@
-import { TableCell, TableHead, TableHeadProps, TableRow, TableRowProps, Typography, useMediaQuery } from '@mui/material';
+import { Table, TableCell, TableHead, TableHeadProps, TableRow, TableRowProps, Typography, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/system';
 import React, { FC } from 'react';
 

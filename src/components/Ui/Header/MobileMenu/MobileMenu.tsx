@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Drawer, Fab, IconButton, useMediaQuery } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
-import {Link, NavLink} from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import Spinner from "../../Spinner/Spinner";
 import { apiStoreCategories } from "../../../../store";
 import { toJS } from "mobx";
@@ -13,10 +13,10 @@ interface MobileMenuProps {
 
 const MobileMenu: React.FC<MobileMenuProps> = ({ open, onClose }) => {
     const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-    
+
     const categories = toJS(apiStoreCategories.categories);
-    
-    
+
+
     const content = categories ? (
 
         categories.map((item: any) => (
@@ -24,7 +24,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ open, onClose }) => {
             <div
                 key={item.resource_id}
                 style={{
-                    
+
                     width: "90%",
                     backgroundColor: selectedCategory === item.name ? "#ededed" : "transparent",
                     borderRadius: selectedCategory === item.name ? "7px" : "transparent",
@@ -43,7 +43,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ open, onClose }) => {
                         color: selectedCategory === item.name ? "#035FA2" : "#333",
                     }}
                     onClick={() => setSelectedCategory(item.name)}
-                    
+
                 >
                     {item.name}
                 </NavLink>
@@ -56,10 +56,10 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ open, onClose }) => {
     const isMobile = useMediaQuery('(max-width: 768px)');
 
     return (
-        
-        <Drawer anchor="right" open={open} onClose={onClose}  sx={{ height: "100%"}} >
-            
-            
+
+        <Drawer anchor="right" open={open} onClose={onClose} sx={{ height: "100%" }} data-testid="drawer">
+
+
             <div
                 style={{
                     display: "flex",
@@ -67,15 +67,16 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ open, onClose }) => {
                     alignItems: "center",
                     justifyContent: "start",
                     height: "100vh",
-                    width:"320px",
+                    width: "320px",
                 }}
                 onClick={onClose}
-            >  
-                <IconButton onClick={onClose} sx={{margin:'1em 1em 1em auto'}}>
-                    <MenuOpenIcon color="secondary"/>
+                data-testid="toggle_el"
+            >
+                <IconButton onClick={onClose} sx={{ margin: '1em 1em 1em auto' }}>
+                    <MenuOpenIcon color="secondary" />
                 </IconButton>
                 <div style={{
-                    
+
                     width: "90%",
                     backgroundColor: selectedCategory === null ? "#ededed" : "transparent",
                     borderRadius: selectedCategory === null ? "7px" : "transparent",
@@ -99,7 +100,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ open, onClose }) => {
                 </div>
                 {content}
 
-                
+
             </div>
         </Drawer>
     );

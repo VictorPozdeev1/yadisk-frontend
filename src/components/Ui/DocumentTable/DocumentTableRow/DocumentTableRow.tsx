@@ -67,8 +67,8 @@ export const DocumentTableRow: FC<DocumentTableRowProps> = ({
             color="secondary"
             onClick={(e) => {
               onView && onView(document?.resource_id);
-
             }}
+            data-testid={'view_btn'}
           >
             <FileOpenOutlinedIcon sx={isMobile ? smallIconStyle : {}} />
           </IconButton>
@@ -125,6 +125,7 @@ export const DocumentTableRow: FC<DocumentTableRowProps> = ({
               );
             }
           }}
+          data-testid={'test_select'}
         >
           {categoryMenu}
         </Select>
@@ -139,6 +140,7 @@ export const DocumentTableRow: FC<DocumentTableRowProps> = ({
               apiStoreDocuments.delDoc(document?.path);
             }
           }}
+          data-testid={'delete_btn'}
         >
           <DeleteForeverRoundedIcon sx={isMobile ? smallIconStyle : {}} />
         </IconButton>

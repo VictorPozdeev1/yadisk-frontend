@@ -18,6 +18,7 @@ describe('Main component', () => {
 
         expect(screen.getByRole('main')).toBeInTheDocument();
         expect(screen.getByText('test_title')).toBeInTheDocument();
+
     })
 
     test('Main snapshot', () => {

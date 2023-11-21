@@ -23,4 +23,7 @@ test('Render Category', () => {
         </BrowserRouter>
     )
 
+    expect(screen.queryByTestId('test_title')).toBeInTheDocument();
+    expect(screen.getByRole('table')).toBeInTheDocument();
+
 })
