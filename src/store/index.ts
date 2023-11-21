@@ -6,8 +6,6 @@ import ErrorState from "./ErrorState";
 const apiStoreCategories = new ApiStoreCategories();
 const apiStoreDocuments = new ApiStoreDocument();
 const errorState = new ErrorState();
-errorState.enqueue('First');
-errorState.enqueue('Second');
 
 injectStores({
   apiStoreCategories,

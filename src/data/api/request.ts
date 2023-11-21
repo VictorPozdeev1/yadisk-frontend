@@ -3,6 +3,7 @@ import Document from "../contracts/Document";
 import Category from "../contracts/Category";
 import token from "./token";
 import { IYandexDiskAPI } from "./IYandexDiskAPI";
+import { errorState } from "../../store/index"
 
 function getCategoryFromPath(path: string): string {
   const parts = path.split("/");
@@ -13,23 +14,24 @@ function getCategoryFromPath(path: string): string {
 export const CATEGORIES_URL = "CaseLabDocuments",
   BASE_URL = "https://cloud-api.yandex.net/v1/disk/resources";
 
-const handleRequestError = (error: any) => {
+const getRequestErrorFormatted = (error: any) : { message: string}  => {
+  let message: string = "";
   if (!navigator.onLine) {
-    console.log("Error: no internet access");
+    message = "Error: no internet access";
   } else if (error.response) {
     const { status, data } = error.response;
-    console.log(`Error ${status}: ${data}`);
+    message = `Error ${status}: ${data}`;
     if (status === 401) {
-      console.log(`Error: Handle unauthorized access`);
+      message = `Error: Handle unauthorized access`;
     } else if (status === 404) {
-      console.log(`Error: Handle not found`);
+      message = `Error: Handle not found`;
     }
   } else if (error.request) {
-    console.log("No response received");
+    message = "No response received";
   } else {
-    console.log(`Error: ${error.message}`);
+    message = `Error: ${error.message}`;
   }
-  throw error;
+  return { message };
 };
 
 const YandexDiskAPI: IYandexDiskAPI = {
@@ -50,8 +52,7 @@ const YandexDiskAPI: IYandexDiskAPI = {
 
       return response.data._embedded.items;
     } catch (err) {
-      handleRequestError(err);
-      throw err;
+      throw getRequestErrorFormatted(err);
     }
   },
 
@@ -73,8 +74,7 @@ const YandexDiskAPI: IYandexDiskAPI = {
 
       return response.data._embedded.items;
     } catch (err) {
-      handleRequestError(err);
-      throw err;
+      throw getRequestErrorFormatted(err);
     }
   },
 
@@ -99,8 +99,7 @@ const YandexDiskAPI: IYandexDiskAPI = {
         category: getCategoryFromPath(el.path),
       }));
     } catch (err) {
-      handleRequestError(err);
-      throw err;
+      throw getRequestErrorFormatted(err);
     }
   },
 
@@ -115,8 +114,7 @@ const YandexDiskAPI: IYandexDiskAPI = {
         },
       });
     } catch (err) {
-      handleRequestError(err);
-      throw err;
+      throw getRequestErrorFormatted(err);
     }
   },
 
@@ -134,8 +132,7 @@ const YandexDiskAPI: IYandexDiskAPI = {
       await YandexDiskAPI.getDocuments();
       return response.data;
     } catch (err) {
-      handleRequestError(err);
-      throw err;
+      throw getRequestErrorFormatted(err);
     }
   },
   /*addDocument: async (url:string, path:string) =>{
