@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 import Document from "../../../../data/contracts/Document";
 import Category from "../../../../data/contracts/Category";
 import {
@@ -20,19 +20,12 @@ import { Link } from "react-router-dom";
 
 export interface DocumentTableRowProps extends TableRowProps {
   document?: Document;
-  categoryList?: Category[]; //пока не исползуется, берём из mobx
-  onDelete?: (arg: unknown) => void;
-  onCategoryChange?: (arg: unknown) => void;
   onView?: (arg: unknown) => void;
 }
 export const DocumentTableRow: FC<DocumentTableRowProps> = ({
   document,
-  categoryList, //
   onView,
-  onCategoryChange,
-  onDelete,
 }) => {
-  const [documentID, setDocumentID] = useState(document?.resource_id);
   const isMobile = useMediaQuery((theme: Theme) =>
     theme.breakpoints.down("tablet")
   );
@@ -40,17 +33,17 @@ export const DocumentTableRow: FC<DocumentTableRowProps> = ({
     width: 20,
     height: 20,
   };
-  const categoryMenu = (
-    categoryList ?? toJS<Category[]>(apiStoreCategories.categories)
-  )?.map((item: Category, idx) => (
-    <MenuItem
-      key={`${idx}_${item.resource_id.slice(-3)}`}
-      value={item.name}
-      sx={isMobile ? { fontSize: 12 } : { fontSize: 16 }}
-    >
-      {item.name}
-    </MenuItem>
-  ));
+  const categoryMenu = toJS<Category[]>(apiStoreCategories.categories)?.map(
+    (item: Category, idx) => (
+      <MenuItem
+        key={`${idx}_${item.resource_id.slice(-3)}`}
+        value={item.name}
+        sx={isMobile ? { fontSize: 12 } : { fontSize: 16 }}
+      >
+        {item.name}
+      </MenuItem>
+    )
+  );
   console.log(document);
   return (
     <TableRow
@@ -72,8 +65,7 @@ export const DocumentTableRow: FC<DocumentTableRowProps> = ({
           <IconButton
             color="secondary"
             onClick={(e) => {
-              onView && onView({ documentID });
-              console.log("view", { documentID });
+              onView && onView(document?.resource_id);
             }}
           >
             <FileOpenOutlinedIcon sx={isMobile ? smallIconStyle : {}} />
@@ -132,14 +124,6 @@ export const DocumentTableRow: FC<DocumentTableRowProps> = ({
             }
           }}
         >
-          <MenuItem
-            disabled
-            key={"-1"}
-            value={"-1"}
-            sx={isMobile ? { fontSize: 12 } : { fontSize: 16 }}
-          >
-            {"не задана категория"}
-          </MenuItem>
           {categoryMenu}
         </Select>
       </TableCell>
@@ -148,7 +132,7 @@ export const DocumentTableRow: FC<DocumentTableRowProps> = ({
         <IconButton
           title="удалить документ"
           color="secondary"
-          onClick={(e) => {
+          onClick={() => {
             if (document) {
               apiStoreDocuments.delDoc(document?.path);
             }

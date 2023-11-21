@@ -86,6 +86,7 @@ const YandexDiskAPI: IYandexDiskAPI = {
           params: {
             fields:
               "items.name, items.resource_id, items.file, items.preview, items.sizes, items.path",
+            sort: "items.name",
           },
           headers: {
             Authorization: token,
