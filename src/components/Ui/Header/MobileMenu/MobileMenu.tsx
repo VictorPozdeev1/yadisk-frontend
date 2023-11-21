@@ -6,6 +6,7 @@ import Spinner from "../../Spinner/Spinner";
 import { apiStoreCategories } from "../../../../store";
 import { toJS } from "mobx";
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
+import Category from "../../../../data/contracts/Category";
 interface MobileMenuProps {
     open: boolean;
     onClose: () => void;
@@ -18,7 +19,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ open, onClose }) => {
 
     const content = categories ? (
 
-        categories.map((item: any) => (
+        categories.map((item: Category) => (
             //<div key={item.resource_id}>{item.name}</div>
             <div
                 key={item.resource_id}
@@ -29,7 +30,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ open, onClose }) => {
                     borderRadius: selectedCategory === item.name ? "7px" : "transparent",
                     textAlign: "center",
                 }}
-                onClick={onClose}
+            // onClick={onClose}
             >
                 <NavLink
                     key={item.resource_id}
@@ -41,7 +42,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ open, onClose }) => {
                         textDecoration: "none",
                         color: selectedCategory === item.name ? "#035FA2" : "#333",
                     }}
-                    onClick={() => setSelectedCategory(item.name)}
+                    onClick={() => { setSelectedCategory(item.name); onClose() }}
 
                 >
                     {item.name}
@@ -69,7 +70,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ open, onClose }) => {
                     height: "100vh",
                     width: "320px",
                 }}
-                onClick={onClose}
+            // onClick={onClose}
             >
                 <IconButton onClick={onClose} sx={{ margin: '1em 1em 1em auto' }}>
                     <MenuOpenIcon color="secondary"
@@ -88,7 +89,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ open, onClose }) => {
                     <NavLink
                         key={"allDocuments"}
                         to={"/"}
-                        onClick={() => setSelectedCategory(null)}
+                        onClick={() => { setSelectedCategory(null); onClose() }}
                         style={{
                             padding: "12px 24px 12px 24px",
                             display: "block",
