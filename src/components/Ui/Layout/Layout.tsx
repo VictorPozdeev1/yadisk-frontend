@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import { CssBaseline, Container, Grid, useMediaQuery, ThemeProvider } from "@mui/material";
 import { Theme } from '@mui/system';
 import { appTheme } from "../../theme/theme";
+import ErrorSnackbar from "../ErrorSnackbar/ErrorSnackbar";
 
 interface LayoutProps {
   header?: JSX.Element;
@@ -53,6 +54,7 @@ const Layout: FC<LayoutProps> = ({ header, main, footer, sidebar, theme = appThe
           </Grid>
           {/*{footer}*/}
         </Container>
+        <ErrorSnackbar></ErrorSnackbar>
       </ThemeProvider>
   );
 };
