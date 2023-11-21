@@ -7,6 +7,7 @@ import {
   action,
 } from "mobx";
 import YandexDiskAPI from "../data/api/request";
+import { errorState } from "./index";
 
 import Document from "../data/contracts/Document";
 const { getDocumentsByCategory, getDocuments, deleteDocument, switchCategory } =
@@ -16,26 +17,41 @@ class ApiStoreDocument {
   documents: Array<Document> = [];
 
   async loadDocuments() {
-    const documents = (await getDocuments()) as Document[];
-    runInAction(() => {
-      this.documents = documents;
-    });
+    try {
+      const documents = (await getDocuments()) as Document[];
+      runInAction(() => {
+        this.documents = documents;
+      });
+    }
+    catch (e: unknown) {
+      errorState.enqueue((e as Error).message);
+    }
   }
 
   async delDoc(path: string) {
-    await deleteDocument(path);
-    const documents = (await getDocuments()) as Document[];
-    runInAction(() => {
-      this.documents = documents;
-    });
+    try {
+      await deleteDocument(path);
+      const documents = (await getDocuments()) as Document[];
+      runInAction(() => {
+        this.documents = documents;
+      });
+    }
+    catch (e: unknown) {
+      errorState.enqueue((e as Error).message);
+    }
   }
 
   async switchCat(from: string, category: string, fileName: string) {
-    await switchCategory(from, category, fileName);
-    const documents = (await getDocuments()) as Document[];
-    runInAction(() => {
-      this.documents = documents;
-    });
+    try {
+      await switchCategory(from, category, fileName);
+      const documents = (await getDocuments()) as Document[];
+      runInAction(() => {
+        this.documents = documents;
+      });
+    }
+    catch (e: unknown) {
+      errorState.enqueue((e as Error).message);
+    }
   }
 
   constructor() {
