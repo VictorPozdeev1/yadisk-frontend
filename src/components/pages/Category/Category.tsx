@@ -12,6 +12,7 @@ const Category: FC<IItem> = ({ items }) => {
   const filterItems = category
     ? items.filter((el: any) => el.category === category)
     : items;
+
   return (
     <>
       <DocumentTable documentList={filterItems}></DocumentTable>
