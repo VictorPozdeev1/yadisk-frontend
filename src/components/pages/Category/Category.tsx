@@ -1,16 +1,13 @@
-import React, { FC, useEffect, useState } from "react";
+import { FC } from "react";
 import { useParams } from "react-router-dom";
-import Item from "../../Item/Item";
-import ItemsList from "../ItemsList/ItemsList";
 import { DocumentTable } from "../../Ui/DocumentTable/DocumentTable";
+import Document from "../../../data/contracts/Document";
 
 interface IItem {
-  id: string;
-  name: string;
-  category: string;
+  items: Document[];
 }
 
-const Category: FC<any> = ({ items }) => {
+const Category: FC<IItem> = ({ items }) => {
   const { category } = useParams();
   const filterItems = category
     ? items.filter((el: any) => el.category === category)
@@ -39,7 +36,7 @@ const Category: FC<any> = ({ items }) => {
     //     ))}
     // </div>
     <>
-      <h1 data-testid={'toggle-el'}>{`${category ?? "Все документы"}`}</h1>
+      <h1 data-testid={"toggle-el"}>{`${category ?? "Все документы"}`}</h1>
       <DocumentTable documentList={filterItems}></DocumentTable>
       {/* <ItemsList items={filterItems} category={category}></ItemsList> */}
     </>
