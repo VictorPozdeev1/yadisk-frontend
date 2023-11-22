@@ -12,7 +12,7 @@ const items = [
     file: "test_file",
     path: "test_path",
     preview: "test_preview",
-    sizes: [{ name: "test_name", url: "test_https://testURL" }],
+    sizes: [{ name: "test_name", url: "https://testURL" }],
   },
 ];
 

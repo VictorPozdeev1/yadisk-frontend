@@ -7,104 +7,70 @@ Object {
     <div>
       <div
         data-testid="sidebar_test"
-        style="height: 100%; display: flex; flex-direction: column; align-items: center; text-align: left; position: relative;"
+        style="display: flex; height: 100%; flex-direction: column; align-items: center; text-align: left; position: relative; gap: 27px; padding: 20px 12px 30px; min-width: 250px;"
       >
         <div
           data-testid="logo_test"
         >
           <img
             alt="Росатом"
-            class="logoImage"
             src="/images/logo.png"
+            style="max-width: 181px;"
           />
         </div>
         <div
-          data-testid="toggle-el"
-          style="padding: 12px 24px 12px 24px; width: 90%; background-color: rgb(255, 255, 255); border-radius: 7px;"
+          style="display: flex; flex-direction: column; width: 100%;"
         >
-          <a
-            aria-current="page"
-            class="active"
-            data-testid="toggle-go-home-btn"
-            href="/"
-            style="text-decoration: none; color: rgb(3, 95, 162); cursor: pointer;"
+          <div
+            data-testid="toggle-el"
+            style="width: 90%; background-color: rgb(255, 255, 255); border-radius: 7px;"
           >
-            Все документы
-          </a>
+            <a
+              aria-current="page"
+              class="active"
+              data-testid="toggle-go-home-btn"
+              href="/"
+              style="padding: 12px 24px 12px 24px; width: 100%; display: block; text-decoration: none; color: rgb(3, 95, 162); cursor: pointer;"
+            >
+              Все документы
+            </a>
+          </div>
         </div>
-        <button
-          class="MuiButtonBase-root MuiFab-root MuiFab-extended MuiFab-sizeLarge MuiFab-default MuiFab-root MuiFab-extended MuiFab-sizeLarge MuiFab-default css-r318k3-MuiButtonBase-root-MuiFab-root"
-          tabindex="0"
-          type="button"
-        >
-          Документ
-          <svg
-            aria-hidden="true"
-            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
-            data-testid="AddIcon"
-            focusable="false"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"
-            />
-          </svg>
-          <span
-            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-          />
-        </button>
       </div>
     </div>
   </body>,
   "container": <div>
     <div
       data-testid="sidebar_test"
-      style="height: 100%; display: flex; flex-direction: column; align-items: center; text-align: left; position: relative;"
+      style="display: flex; height: 100%; flex-direction: column; align-items: center; text-align: left; position: relative; gap: 27px; padding: 20px 12px 30px; min-width: 250px;"
     >
       <div
         data-testid="logo_test"
       >
         <img
           alt="Росатом"
-          class="logoImage"
           src="/images/logo.png"
+          style="max-width: 181px;"
         />
       </div>
       <div
-        data-testid="toggle-el"
-        style="padding: 12px 24px 12px 24px; width: 90%; background-color: rgb(255, 255, 255); border-radius: 7px;"
+        style="display: flex; flex-direction: column; width: 100%;"
       >
-        <a
-          aria-current="page"
-          class="active"
-          data-testid="toggle-go-home-btn"
-          href="/"
-          style="text-decoration: none; color: rgb(3, 95, 162); cursor: pointer;"
+        <div
+          data-testid="toggle-el"
+          style="width: 90%; background-color: rgb(255, 255, 255); border-radius: 7px;"
         >
-          Все документы
-        </a>
+          <a
+            aria-current="page"
+            class="active"
+            data-testid="toggle-go-home-btn"
+            href="/"
+            style="padding: 12px 24px 12px 24px; width: 100%; display: block; text-decoration: none; color: rgb(3, 95, 162); cursor: pointer;"
+          >
+            Все документы
+          </a>
+        </div>
       </div>
-      <button
-        class="MuiButtonBase-root MuiFab-root MuiFab-extended MuiFab-sizeLarge MuiFab-default MuiFab-root MuiFab-extended MuiFab-sizeLarge MuiFab-default css-r318k3-MuiButtonBase-root-MuiFab-root"
-        tabindex="0"
-        type="button"
-      >
-        Документ
-        <svg
-          aria-hidden="true"
-          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
-          data-testid="AddIcon"
-          focusable="false"
-          viewBox="0 0 24 24"
-        >
-          <path
-            d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"
-          />
-        </svg>
-        <span
-          class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-        />
-      </button>
     </div>
   </div>,
   "debug": [Function],

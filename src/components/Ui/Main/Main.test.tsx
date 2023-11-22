@@ -9,40 +9,23 @@ describe('Main component', () => {
         render(
             <BrowserRouter>
                 <ThemeProvider theme={appTheme}>
-                    <Main
-                        title='test_title'
-                    />
+                    <Main />
                 </ThemeProvider>
             </BrowserRouter>
         )
 
         expect(screen.getByRole('main')).toBeInTheDocument();
-        expect(screen.getByText('test_title')).toBeInTheDocument();
+        expect(screen.getByText('Все документы')).toBeInTheDocument();
     })
 
     test('Main snapshot', () => {
         const main = render(
             <BrowserRouter>
                 <ThemeProvider theme={appTheme}>
-                    <Main
-                        title='test_title'
-                    />
-                </ThemeProvider>
-            </BrowserRouter>
-        )
-        expect(main).toMatchSnapshot();
-    })
-
-    test('Main render widtout data', () => {
-        render(
-            <BrowserRouter>
-                <ThemeProvider theme={appTheme}>
                     <Main />
                 </ThemeProvider>
             </BrowserRouter>
         )
-
-        expect(screen.getByText('Все категории')).toBeInTheDocument();
-
+        expect(main).toMatchSnapshot();
     })
 })

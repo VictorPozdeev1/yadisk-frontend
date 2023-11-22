@@ -24,7 +24,6 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ open, onClose }) => {
             <div
                 key={item.resource_id}
                 style={{
-
                     width: "90%",
                     backgroundColor: selectedCategory === item.name ? "#ededed" : "transparent",
                     borderRadius: selectedCategory === item.name ? "7px" : "transparent",
@@ -58,7 +57,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ open, onClose }) => {
     return (
 
         <Drawer anchor="right" open={open} onClose={onClose}
-            sx={{ height: "100%", }} >
+            sx={{ height: "100%", }} data-testid="drawer">
 
 
             <div
@@ -98,6 +97,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ open, onClose }) => {
                             color: selectedCategory === null ? "#035FA2" : "#333",
                             cursor: "pointer",
                         }}
+                        data-testid='navlink'
                     >
                         Все документы
                     </NavLink>
