@@ -67,6 +67,7 @@ export const DocumentTableRow: FC<DocumentTableRowProps> = ({
         >
           <IconButton
             color="secondary"
+            data-testid="view_btn"
             onClick={(e) => {
               onView && onView(document?.resource_id);
             }}
@@ -111,6 +112,7 @@ export const DocumentTableRow: FC<DocumentTableRowProps> = ({
         <Select
           title="сменить категорию"
           variant="standard"
+          data-testid="test_select"
           value={document?.category}
           sx={{
             fontSize: isMobile ? 12 : 16,
@@ -135,6 +137,7 @@ export const DocumentTableRow: FC<DocumentTableRowProps> = ({
         <IconButton
           title="удалить документ"
           color="secondary"
+          data-testid="delete_btn"
           onClick={() => {
             if (document) {
               confirm({
